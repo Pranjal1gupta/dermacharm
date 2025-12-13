@@ -70,7 +70,7 @@ export default function AboutSection() {
             </div>
             <div className="grid gap-2 xs:gap-3 sm:gap-4 grid-cols-2">
               <div className="rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/50 bg-white px-3 xs:px-4 sm:px-5 py-3 xs:py-4 sm:py-6 shadow-lg shadow-[#D4C5B9]/30">
-                <p className="text-xl xs:text-2xl sm:text-3xl font-semibold text-[#C9A961]">18+</p>
+                <p className="text-xl xs:text-2xl sm:text-3xl font-semibold text-[#C9A961]">5+</p>
                 <p className="text-xs uppercase tracking-[0.3em] text-[#404040]/60 mt-1">Years of expertise</p>
               </div>
               <div className="rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/50 bg-white px-3 xs:px-4 sm:px-5 py-3 xs:py-4 sm:py-6 shadow-lg shadow-[#D4C5B9]/30">
