@@ -72,7 +72,7 @@ export default function TreatmentsSection() {
         <div className="text-center mb-16 lg:mb-20">
           <p className="text-sm lg:text-base font-semibold uppercase tracking-[0.4em] text-[#C9A961] mb-4">Curated Protocol Index</p>
           <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#404040] leading-tight mb-6 lg:mb-8 max-w-4xl mx-auto">
-            List Of Treatments At Derms
+            List Of Treatments At  Dermacharm Aesthetics
           </h1>
           <p className="mx-auto max-w-3xl text-sm sm:text-base lg:text-lg text-[#404040]/80 leading-relaxed">
             Immerse in multi-sensory dermatology that fuses clinical precision with deeply restorative rituals for skin,
