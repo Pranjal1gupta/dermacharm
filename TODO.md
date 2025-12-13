@@ -1,0 +1,5 @@
+- [ ] Reduce padding in Hero component
+- [ ] Reduce padding in AboutSection component
+- [ ] Reduce padding in TreatmentsSection component
+- [ ] Reduce padding in Gallery component
+- [ ] Reduce padding in services section in page.tsx
