@@ -1,10 +1,8 @@
-// 
-
-
 'use client';
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 type Slide = {
   id: string;
@@ -16,6 +14,50 @@ type Slide = {
   sideImage: string;
   focus: string;
   metric: string;
+};
+
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (custom: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      delay: custom * 0.1,
+    },
+  }),
+};
+
+const highlightsVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const highlightItemVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
+const metricsVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: (custom: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: custom * 0.12,
+    },
+  }),
 };
 
 const slides: Slide[] = [
@@ -56,6 +98,15 @@ const slides: Slide[] = [
 
 export default function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    const preloaderTimer = setTimeout(() => {
+      setShowAnimation(true);
+    }, 1500);
+
+    return () => clearTimeout(preloaderTimer);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -68,7 +119,7 @@ export default function Hero() {
   const activeSlide = slides[activeIndex];
 
   return (
-    <section className="relative overflow-hidden mt-0 xs:mt-0 sm:mt-0" style={{ height: '100vh' }}>
+    <section className="relative overflow-hidden mt-0 xs:mt-0 sm:mt-0 bg-gradient-to-br from-white via-[#FBF9F6] to-[#F5EDE3]" style={{ height: '100vh' }}>
       <div className="absolute inset-0">
         {slides.map((slide, index) => (
           <div
@@ -85,54 +136,134 @@ export default function Hero() {
               sizes="100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-[#404040]/70 via-[#6B5D52]/40 to-[#C9A961]/20" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-[#FBF9F6]/70 to-[#E8D5B5]/60" />
           </div>
         ))}
       </div>
       <div 
-        className="relative w-full px-2 xs:px-3 sm:px-4 pb-6 xs:pb-8 sm:pb-10 pt-8 xs:pt-10 sm:pt-12 lg:pt-16 text-white"
+        className="relative w-full px-2 xs:px-3 sm:px-4 pb-6 xs:pb-8 sm:pb-10 pt-8 xs:pt-10 sm:pt-12 lg:pt-16 text-gray-900"
         style={{ height: '100vh' }}
       >
         <div className="mx-auto max-w-7xl h-full flex flex-col justify-end">
           <div className="grid gap-3 xs:gap-4 sm:gap-6 lg:gap-8 lg:grid-cols-[1.1fr_0.9fr] flex-1">
-            <div className="flex flex-col justify-between">
+            <motion.div 
+              className="flex flex-col justify-between"
+              initial="hidden"
+              animate={showAnimation ? "visible" : "hidden"}
+            >
               <div className="space-y-2 xs:space-y-3 sm:space-y-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C9A961]">{activeSlide.badge}</p>
-                <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">{activeSlide.heading}</h1>
-                <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/80 leading-relaxed">{activeSlide.description}</p>
-                <div className="flex flex-wrap gap-2 sm:gap-3 pt-2">
+                <motion.p 
+                  className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
+                  variants={textVariants}
+                  custom={0}
+                >
+                  {activeSlide.badge}
+                </motion.p>
+                <motion.h1 
+                  className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-[#8B6F47] via-[#C9A961] to-[#D4C5B9] bg-clip-text text-transparent"
+                  variants={textVariants}
+                  custom={1}
+                >
+                  {activeSlide.heading}
+                </motion.h1>
+                <motion.p 
+                  className="text-sm xs:text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed"
+                  variants={textVariants}
+                  custom={2}
+                >
+                  {activeSlide.description}
+                </motion.p>
+                <motion.div 
+                  className="flex flex-wrap gap-2 sm:gap-3 pt-2"
+                  variants={highlightsVariants}
+                  initial="hidden"
+                  animate={showAnimation ? "visible" : "hidden"}
+                >
                   {activeSlide.highlights.map((item) => (
-                    <span key={item} className="rounded-full border border-white/30 bg-white/10 px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 text-[0.65rem] xs:text-xs sm:text-xs font-semibold uppercase tracking-widest text-white/80">
+                    <motion.span 
+                      key={item} 
+                      className="rounded-full border border-[#E8D5B5] bg-[#FFFBF5] px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 text-[0.65rem] xs:text-xs sm:text-xs font-semibold uppercase tracking-widest text-[#8B6F47]"
+                      variants={highlightItemVariants}
+                    >
                       {item}
-                    </span>
+                    </motion.span>
                   ))}
-                </div>
+                </motion.div>
               </div>
-              <div className="flex flex-col xs:flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 xs:gap-5 sm:gap-6 text-sm text-white/70">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.4em] text-white/60">Signature focus</p>
-                  <p className="text-lg xs:text-xl sm:text-2xl font-semibold text-white mt-1">{activeSlide.focus}</p>
-                </div>
-                <div className="hidden sm:block h-8 w-px bg-white/20" />
-                <div>
-                  <p className="text-xs uppercase tracking-[0.4em] text-white/60">Result insight</p>
-                  <p className="text-sm xs:text-base sm:text-lg font-medium text-white mt-1">{activeSlide.metric}</p>
-                </div>
-              </div>
-              <div className="flex gap-1.5 sm:gap-2 flex-wrap pt-2">
+              <motion.div 
+                className="flex flex-col xs:flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 xs:gap-5 sm:gap-6 text-sm text-gray-600"
+                initial="hidden"
+                animate={showAnimation ? "visible" : "hidden"}
+              >
+                <motion.div
+                  variants={metricsVariants}
+                  custom={0}
+                >
+                  <motion.p 
+                    className="text-xs uppercase tracking-[0.4em] text-[#C9A961] font-semibold"
+                    variants={metricsVariants}
+                    custom={0}
+                  >
+                    Signature focus
+                  </motion.p>
+                  <motion.p 
+                    className="text-lg xs:text-xl sm:text-2xl font-semibold text-gray-900 mt-1"
+                    variants={metricsVariants}
+                    custom={1}
+                  >
+                    {activeSlide.focus}
+                  </motion.p>
+                </motion.div>
+                <motion.div 
+                  className="hidden sm:block h-8 w-px bg-[#E8D5B5]"
+                  variants={metricsVariants}
+                  custom={2}
+                />
+                <motion.div
+                  variants={metricsVariants}
+                  custom={2}
+                >
+                  <motion.p 
+                    className="text-xs uppercase tracking-[0.4em] text-[#C9A961] font-semibold"
+                    variants={metricsVariants}
+                    custom={2}
+                  >
+                    Result insight
+                  </motion.p>
+                  <motion.p 
+                    className="text-sm xs:text-base sm:text-lg font-medium text-gray-900 mt-1"
+                    variants={metricsVariants}
+                    custom={3}
+                  >
+                    {activeSlide.metric}
+                  </motion.p>
+                </motion.div>
+              </motion.div>
+              <motion.div 
+                className="flex gap-1.5 sm:gap-2 flex-wrap pt-2"
+                initial="hidden"
+                animate={showAnimation ? "visible" : "hidden"}
+                variants={textVariants}
+                custom={3}
+              >
                 {slides.map((slide, index) => (
                   <button
                     key={slide.id}
                     type="button"
-                    className={`h-1 rounded-full transition-all ${index === activeIndex ? 'w-6 xs:w-8 sm:w-12 bg-[#C9A961]' : 'w-3 xs:w-4 sm:w-6 bg-white/40'}`}
+                    className={`h-1 rounded-full transition-all ${index === activeIndex ? 'w-6 xs:w-8 sm:w-12 bg-[#C9A961]' : 'w-3 xs:w-4 sm:w-6 bg-[#D4C5B9]'}`}
                     aria-label={`Show ${slide.focus}`}
                     aria-current={index === activeIndex}
                     onClick={() => setActiveIndex(index)}
                   />
                 ))}
-              </div>
-            </div>
-            <div className="relative rounded-2xl xs:rounded-2xl sm:rounded-3xl border border-[#C9A961]/40 overflow-hidden shadow-2xl shadow-[#D4C5B9]/30 mt-8 lg:mt-0 lg:h-[600px]">
+              </motion.div>
+            </motion.div>
+            <motion.div 
+              className="relative rounded-2xl xs:rounded-2xl sm:rounded-3xl border border-[#E8D5B5] overflow-hidden shadow-2xl shadow-[#D4C5B9]/50 mt-8 lg:mt-0 lg:h-[600px]"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={showAnimation ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               <Image
                 key={activeSlide.id}
                 src={activeSlide.sideImage}
@@ -141,8 +272,8 @@ export default function Hero() {
                 priority
                 className="object-cover transition-opacity duration-[1200ms] ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#C9A961]/40 via-transparent to-transparent" />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#E8D5B5]/40 via-transparent to-transparent" />
+            </motion.div>
           </div>
         </div>
       </div>

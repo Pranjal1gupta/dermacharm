@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const socialLinks = [
   { icon: 'facebook', href: 'https://www.facebook.com/p/Dermacharm-Aesthetics-61577171443099/', label: 'Facebook' },
@@ -40,25 +43,85 @@ const navGroups = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
+
+const socialIconVariants = {
+  hidden: { opacity: 0, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5 },
+  },
+};
+
+const linkVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
 export default function Footer() {
   return (
     <footer className="bg-[#F9F8F6] border-t border-[#C9A961]/30 text-[#404040]">
       <div className="w-full px-2 xs:px-3 sm:px-4">
-        <div className="max-w-7xl mx-auto py-10 xs:py-12 sm:py-14 md:py-16 lg:py-20">
-          <div className="grid gap-6 xs:gap-8 sm:gap-10 grid-cols-1 xs:grid-cols-2 md:grid-cols-4">
-            <div className="col-span-1 xs:col-span-1 flex flex-col items-start">
-              <Link href="/" className="inline-flex items-center" aria-label="Dermacharm home">
-                <Image src="/logo.png" alt="Dermacharm" width={140} height={40} priority className="h-12 xs:h-14 sm:h-16 w-auto" />
-              </Link>
-              <div className="flex gap-3 xs:gap-4 mt-4 xs:mt-5 sm:mt-6">
+        <motion.div 
+          className="max-w-7xl mx-auto py-10 xs:py-12 sm:py-14 md:py-16 lg:py-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+        >
+          <motion.div 
+            className="grid gap-6 xs:gap-8 sm:gap-10 grid-cols-2 xs:grid-cols-2 md:grid-cols-4 place-items-center md:place-items-start"
+            variants={containerVariants}
+          >
+            <motion.div 
+              className="col-span-2 xs:col-span-2 md:col-span-1 flex flex-col items-center md:items-start"
+              variants={itemVariants}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Link href="/" className="inline-flex items-center" aria-label="Dermacharm home">
+                  <Image src="/logo.png" alt="Dermacharm" width={140} height={40} priority className="h-12 xs:h-14 sm:h-16 w-auto" />
+                </Link>
+              </motion.div>
+              <motion.div 
+                className="flex gap-3 xs:gap-4 mt-4 xs:mt-5 sm:mt-6"
+                variants={containerVariants}
+              >
                 {socialLinks.map((social) => (
-                  <a
+                  <motion.a
                     key={social.icon}
                     href={social.href}
                     aria-label={social.label}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center h-10 w-10 xs:h-11 xs:w-11 rounded-full border border-[#C9A961]/40 text-[#C9A961] hover:bg-[#C9A961] hover:border-[#C9A961] hover:text-white transition"
+                    variants={socialIconVariants}
+                    whileHover={{ scale: 1.15, rotate: 5 }}
                   >
                     {social.icon === 'facebook' && (
                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -80,30 +143,53 @@ export default function Footer() {
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
                       </svg>
                     )}
-                  </a>
+                  </motion.a>
                 ))}
-              </div>
-            </div>
-            {navGroups.map((group) => (
-              <div key={group.title} className="col-span-1">
-                <p className="text-xs xs:text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A961]">{group.title}</p>
-                <ul className="mt-2 xs:mt-3 sm:mt-4 space-y-1 xs:space-y-1.5 sm:space-y-2 text-xs xs:text-sm text-[#404040]/70">
+              </motion.div>
+            </motion.div>
+            {navGroups.map((group, index) => (
+              <motion.div 
+                key={group.title} 
+                className={`col-span-1 xs:col-span-1 ${index === navGroups.length - 1 ? 'col-span-2 xs:col-span-2 md:col-span-1' : ''}`}
+                variants={itemVariants}
+              >
+                <motion.p 
+                  className="text-xs xs:text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A961] text-center md:text-left"
+                  variants={itemVariants}
+                >
+                  {group.title}
+                </motion.p>
+                <motion.ul 
+                  className="mt-2 xs:mt-3 sm:mt-4 space-y-1 xs:space-y-1.5 sm:space-y-2 text-xs xs:text-sm text-[#404040]/70 text-center md:text-left"
+                  variants={containerVariants}
+                >
                   {group.items.map((item) => (
-                    <li key={item.href} className="hover:text-[#C9A961] transition text-bold">
+                    <motion.li 
+                      key={item.href} 
+                      className="hover:text-[#C9A961] transition text-bold"
+                      variants={linkVariants}
+                      whileHover={{ x: 5 }}
+                    >
                       <Link href={item.href} className="hover:text-[#C9A961]">
                         {item.label}
                       </Link>
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
-              </div>
+                </motion.ul>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
-      <div className="border-t border-[#C9A961]/20 py-3 xs:py-4 sm:py-5 text-center text-xs xs:text-xs text-[#404040]/60 px-2 xs:px-3 sm:px-4 mb-20 sm:mb-0 bg-white/50">
+      <motion.div 
+        className="border-t border-[#C9A961]/20 py-3 xs:py-4 sm:py-5 text-center text-xs xs:text-xs text-[#404040]/60 px-2 xs:px-3 sm:px-4 bg-white/50"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        viewport={{ once: true }}
+      >
         © {new Date().getFullYear()} Dermacharm Aesthetics. All rights reserved.
-      </div>
+      </motion.div>
     </footer>
   );
 }

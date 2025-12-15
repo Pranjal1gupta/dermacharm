@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const faqs = [
   {
@@ -45,30 +46,87 @@ const faqs = [
   },
 ];
 
+const headerVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8 },
+  },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
 export default function FAQ() {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
     <section className="w-full px-2 xs:px-3 sm:px-4 py-6 xs:py-8 sm:py-10 md:py-12 bg-[#FAFAF7]">
-      <div className="mx-auto max-w-4xl space-y-8 xs:space-y-10 sm:space-y-12">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C9A961]">Common Questions</p>
-          <h2 className="mt-2 xs:mt-3 sm:mt-4 text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-[#404040]">
+      <motion.div 
+        className="mx-auto max-w-4xl space-y-8 xs:space-y-10 sm:space-y-12"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
+      >
+        <motion.div 
+          className="text-center"
+          variants={headerVariants}
+        >
+          <motion.p 
+            className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
+            variants={itemVariants}
+          >
+            Common Questions
+          </motion.p>
+          <motion.h2 
+            className="mt-2 xs:mt-3 sm:mt-4 text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-[#404040]"
+            variants={itemVariants}
+          >
             Frequently asked questions
-          </h2>
-          <p className="mt-2 xs:mt-3 sm:mt-4 text-xs xs:text-sm sm:text-base md:text-lg text-[#404040]/70 mx-auto max-w-2xl leading-relaxed">
+          </motion.h2>
+          <motion.p 
+            className="mt-2 xs:mt-3 sm:mt-4 text-xs xs:text-sm sm:text-base md:text-lg text-[#404040]/70 mx-auto max-w-2xl leading-relaxed"
+            variants={itemVariants}
+          >
             Find answers to common questions about our treatments, procedures, and services.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xs:gap-5 sm:gap-6">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 xs:gap-5 sm:gap-6"
+          variants={containerVariants}
+        >
           {faqs.map((faq) => (
-            <button
+            <motion.button
               key={faq.id}
               onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
               className="w-full text-left"
+              variants={itemVariants}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className="rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-white/90 p-4 xs:p-5 sm:p-6 shadow-md shadow-[#D4C5B9]/30 transition hover:border-[#C9A961] hover:shadow-lg hover:shadow-[#D4C5B9]/40">
+              <motion.div 
+                className="rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-white/90 p-4 xs:p-5 sm:p-6 shadow-md shadow-[#D4C5B9]/30 transition hover:border-[#C9A961] hover:shadow-lg hover:shadow-[#D4C5B9]/40"
+                layout
+              >
                 <div className="flex items-start gap-3 xs:gap-4 sm:gap-5">
                   <div className="flex h-6 xs:h-7 sm:h-8 w-6 xs:w-7 sm:w-8 items-center justify-center rounded-full bg-[#F5F5F5] flex-shrink-0 mt-0.5">
                     <svg
@@ -89,37 +147,66 @@ export default function FAQ() {
                 </div>
 
                 {openId === faq.id && (
-                  <div className="mt-4 xs:mt-5 sm:mt-6 pl-9 xs:pl-11 sm:pl-13 border-l-2 border-[#C9A961]/20">
+                  <motion.div 
+                    className="mt-4 xs:mt-5 sm:mt-6 pl-9 xs:pl-11 sm:pl-13 border-l-2 border-[#C9A961]/20"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <p className="text-xs xs:text-sm sm:text-base text-[#404040]/80 leading-relaxed">{faq.answer}</p>
-                  </div>
+                  </motion.div>
                 )}
-              </div>
-            </button>
+              </motion.div>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-gradient-to-br from-white via-[#FAFAF8] to-[#E8DCC8]/20 p-6 xs:p-8 sm:p-10 text-center shadow-md shadow-[#D4C5B9]/30">
-          <p className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A961]">Still have questions?</p>
-          <h3 className="mt-2 xs:mt-3 sm:mt-4 text-lg xs:text-xl sm:text-2xl font-semibold text-[#404040]">Connect with our team</h3>
-          <p className="mt-2 xs:mt-2.5 sm:mt-3 text-xs xs:text-xs sm:text-sm text-[#404040]/70 mb-4 xs:mb-5 sm:mb-6">
+        <motion.div 
+          className="rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-gradient-to-br from-white via-[#FAFAF8] to-[#E8DCC8]/20 p-6 xs:p-8 sm:p-10 text-center shadow-md shadow-[#D4C5B9]/30"
+          variants={itemVariants}
+        >
+          <motion.p 
+            className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A961]"
+            variants={itemVariants}
+          >
+            Still have questions?
+          </motion.p>
+          <motion.h3 
+            className="mt-2 xs:mt-3 sm:mt-4 text-lg xs:text-xl sm:text-2xl font-semibold text-[#404040]"
+            variants={itemVariants}
+          >
+            Connect with our team
+          </motion.h3>
+          <motion.p 
+            className="mt-2 xs:mt-2.5 sm:mt-3 text-xs xs:text-xs sm:text-sm text-[#404040]/70 mb-4 xs:mb-5 sm:mb-6"
+            variants={itemVariants}
+          >
             Our concierge team is here to help. Reach out via phone, email, or schedule a free consultation.
-          </p>
-          <div className="flex flex-col xs:flex-row gap-3 xs:gap-4 sm:gap-6 justify-center flex-wrap">
-            <a
+          </motion.p>
+          <motion.div 
+            className="flex flex-row gap-3 xs:gap-4 sm:gap-6 justify-center items-center flex-wrap"
+            variants={containerVariants}
+          >
+            <motion.a
               href="tel:+918005051055"
               className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] px-4 xs:px-5 sm:px-6 py-2 xs:py-2.5 sm:py-3 text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:shadow-lg hover:shadow-[#C9A961]/40"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
             >
               Call Us
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="mailto:dermacharmaesthetics@gmail.com"
               className="inline-flex items-center justify-center rounded-full border-2 border-[#C9A961] px-4 xs:px-5 sm:px-6 py-2 xs:py-2.5 sm:py-3 text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A961] transition hover:bg-[#C9A961] hover:text-white"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
             >
               Email Us
-            </a>
-          </div>
-        </div>
-      </div>
+            </motion.a>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

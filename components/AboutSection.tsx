@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const treatmentSlides = [
   {
@@ -31,6 +32,35 @@ const careHighlights = [
   'Private therapy pods designed for sensory calm and post-care recovery',
 ];
 
+const headerVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
 export default function AboutSection() {
   const [activeSlide, setActiveSlide] = useState(0);
 
@@ -46,56 +76,129 @@ export default function AboutSection() {
 
   return (
     <section className="bg-[#FAFAF8] w-full px-2 xs:px-3 sm:px-4 py-6 xs:py-8 sm:py-10 md:py-12 ">
-      <div className="mx-auto max-w-6xl space-y-10 xs:space-y-12 sm:space-y-14 md:space-y-16">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C9A961]">About Dermacharm</p>
-          <h2 className="mt-2 xs:mt-3 sm:mt-4 text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#404040]">Where medical precision meets sensorial calm</h2>
-          <p className="mt-2 xs:mt-3 sm:mt-4 text-xs xs:text-sm sm:text-base md:text-lg text-[#404040]/70 mx-auto max-w-3xl leading-relaxed">
+      <motion.div 
+        className="mx-auto max-w-6xl space-y-10 xs:space-y-12 sm:space-y-14 md:space-y-16"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
+      >
+        <motion.div 
+          className="text-center"
+          variants={itemVariants}
+        >
+          <motion.p 
+            className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
+            variants={itemVariants}
+          >
+            About Dermacharm
+          </motion.p>
+          <motion.h2 
+            className="mt-2 xs:mt-3 sm:mt-4 text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#404040]"
+            variants={itemVariants}
+          >
+            Where medical precision meets sensorial calm
+          </motion.h2>
+          <motion.p 
+            className="mt-2 xs:mt-3 sm:mt-4 text-xs xs:text-sm sm:text-base md:text-lg text-[#404040]/70 mx-auto max-w-3xl leading-relaxed"
+            variants={itemVariants}
+          >
             Founded by Dr. Anurag Agrahari, Dermacharm Aesthetics integrates cutting-edge dermatological science with
             luxurious wellness experiences, delivering personalized treatments that honor both clinical excellence and
             holistic patient care.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid items-center gap-6 xs:gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-2">
-          <div className="space-y-3 xs:space-y-4 sm:space-y-6 order-2 lg:order-1">
-            <div>
-              <p className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] text-[#C9A961]">Founder</p>
-              <h3 className="mt-1 xs:mt-2 sm:mt-3 text-lg xs:text-xl sm:text-2xl md:text-3xl font-semibold text-[#404040]">Dr. Anurag Agrahari</h3>
-              <p className="mt-1.5 xs:mt-2 sm:mt-2 text-xs xs:text-sm sm:text-base text-[#404040]/70 leading-relaxed">
+        <motion.div 
+          className="grid items-center gap-6 xs:gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-2"
+          variants={containerVariants}
+        >
+          <motion.div 
+            className="space-y-3 xs:space-y-4 sm:space-y-6 order-2 lg:order-1"
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <motion.p 
+                className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
+                variants={itemVariants}
+              >
+                Founder
+              </motion.p>
+              <motion.h3 
+                className="mt-1 xs:mt-2 sm:mt-3 text-lg xs:text-xl sm:text-2xl md:text-3xl font-semibold text-[#404040]"
+                variants={itemVariants}
+              >
+                Dr. Anurag Agrahari
+              </motion.h3>
+              <motion.p 
+                className="mt-1.5 xs:mt-2 sm:mt-2 text-xs xs:text-sm sm:text-base text-[#404040]/70 leading-relaxed"
+                variants={itemVariants}
+              >
                 Board-certified dermatologist with extensive expertise in aesthetic and regenerative medicine. Dedicated to
                 crafting personalized treatment protocols that combine cutting-edge clinical technology with holistic
                 wellness for transformative skin and hair health.
-              </p>
-            </div>
-            <div className="grid gap-2 xs:gap-3 sm:gap-4 grid-cols-2">
-              <div className="rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/50 bg-white px-3 xs:px-4 sm:px-5 py-3 xs:py-4 sm:py-6 shadow-lg shadow-[#D4C5B9]/30">
+              </motion.p>
+            </motion.div>
+            <motion.div 
+              className="grid gap-2 xs:gap-3 sm:gap-4 grid-cols-2"
+              variants={containerVariants}
+            >
+              <motion.div 
+                className="rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/50 bg-white px-3 xs:px-4 sm:px-5 py-3 xs:py-4 sm:py-6 shadow-lg shadow-[#D4C5B9]/30"
+                variants={itemVariants}
+                whileHover={{ y: -5, transition: { duration: 0.3 } }}
+              >
                 <p className="text-xl xs:text-2xl sm:text-3xl font-semibold text-[#C9A961]">5+</p>
                 <p className="text-xs uppercase tracking-[0.3em] text-[#404040]/60 mt-1">Years of expertise</p>
-              </div>
-              <div className="rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/50 bg-white px-3 xs:px-4 sm:px-5 py-3 xs:py-4 sm:py-6 shadow-lg shadow-[#D4C5B9]/30">
+              </motion.div>
+              <motion.div 
+                className="rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/50 bg-white px-3 xs:px-4 sm:px-5 py-3 xs:py-4 sm:py-6 shadow-lg shadow-[#D4C5B9]/30"
+                variants={itemVariants}
+                whileHover={{ y: -5, transition: { duration: 0.3 } }}
+              >
                 <p className="text-xl xs:text-2xl sm:text-3xl font-semibold text-[#C9A961]">9k+</p>
                 <p className="text-xs uppercase tracking-[0.3em] text-[#404040]/60 mt-1">Revived journeys</p>
-              </div>
-            </div>
-            <p className="text-xs xs:text-sm sm:text-base text-[#404040] leading-relaxed">
+              </motion.div>
+            </motion.div>
+            <motion.p 
+              className="text-xs xs:text-sm sm:text-base text-[#404040] leading-relaxed"
+              variants={itemVariants}
+            >
               &quot;Every protocol is sketched from lab diagnostics, emotional wellbeing, and biomimetic actives. We believe in
               rituals that respect physiology and truly transform the stories skin wants to tell.&quot;
-            </p>
-          </div>
-          <div className="relative order-1 lg:order-2">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] xs:rounded-[24px] sm:rounded-[32px] border border-[#C9A961]/50 bg-gradient-to-br from-white via-[#FAFAF8] to-[#E8DCC8] shadow-2xl shadow-[#D4C5B9]/50">
+            </motion.p>
+          </motion.div>
+          <motion.div 
+            className="relative order-1 lg:order-2"
+            variants={itemVariants}
+          >
+            <motion.div 
+              className="relative aspect-[4/5] overflow-hidden rounded-[20px] xs:rounded-[24px] sm:rounded-[32px] border border-[#C9A961]/50 bg-gradient-to-br from-white via-[#FAFAF8] to-[#E8DCC8] shadow-2xl shadow-[#D4C5B9]/50"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <Image src="https://res.cloudinary.com/dlifnml9x/image/upload/v1765614239/524812885_18515732488065041_7772136519625680684_n_1_bubo6d.webp" alt="Dr. Anurag Agrahari, Founder" fill priority className="object-cover" />
-            </div>
-            <div className="absolute -bottom-2 xs:-bottom-3 sm:-bottom-6 right-2 xs:right-3 sm:right-6 rounded-lg xs:rounded-lg sm:rounded-2xl border border-[#C9A961]/60 bg-[#C9A961] px-3 xs:px-4 sm:px-6 py-2 xs:py-3 sm:py-4 text-white shadow-xl shadow-[#C9A961]/40">
+            </motion.div>
+            <motion.div 
+              className="absolute -bottom-2 xs:-bottom-3 sm:-bottom-6 right-2 xs:right-3 sm:right-6 rounded-lg xs:rounded-lg sm:rounded-2xl border border-[#C9A961]/60 bg-[#C9A961] px-3 xs:px-4 sm:px-6 py-2 xs:py-3 sm:py-4 text-white shadow-xl shadow-[#C9A961]/40"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
               <p className="text-[0.65rem] xs:text-xs uppercase tracking-[0.4em] text-white/70">Credentials</p>
               <p className="text-[0.7rem] xs:text-xs sm:text-sm font-semibold mt-0.5 xs:mt-1">Fellow, American Academy of Dermatology</p>
               <p className="text-[0.7rem] xs:text-xs sm:text-sm font-semibold">Member, Global Regenerative Council</p>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
 
-        <div className="grid items-center gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <motion.div 
+          className="grid items-center gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr]"
+          variants={containerVariants}
+        >
           <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[#C9A961]/40 bg-white/90 shadow-2xl shadow-[#D4C5B9]/40">
             <div className="relative h-64 sm:h-80 w-full">
               {treatmentSlides.map((slide, index) => (
@@ -133,20 +236,40 @@ export default function AboutSection() {
               </button>
             </div>
           </div>
-          <div className="space-y-4 sm:space-y-6">
-            <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] text-[#C9A961]">Why patients choose us</p>
-            <h4 className="text-2xl sm:text-3xl font-semibold text-[#404040]">Treatment suites choreographed for measurable calm</h4>
-            <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-[#404040]/80">
+          <motion.div 
+            className="space-y-4 sm:space-y-6"
+            variants={containerVariants}
+          >
+            <motion.p 
+              className="text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
+              variants={itemVariants}
+            >
+              Why patients choose us
+            </motion.p>
+            <motion.h4 
+              className="text-2xl sm:text-3xl font-semibold text-[#404040]"
+              variants={itemVariants}
+            >
+              Treatment suites choreographed for measurable calm
+            </motion.h4>
+            <motion.ul 
+              className="space-y-3 sm:space-y-4 text-sm sm:text-base text-[#404040]/80"
+              variants={containerVariants}
+            >
               {careHighlights.map((highlight) => (
-                <li key={highlight} className="flex gap-3">
+                <motion.li 
+                  key={highlight} 
+                  className="flex gap-3"
+                  variants={itemVariants}
+                >
                   <span className="mt-1.5 h-2 w-2 rounded-full bg-[#C9A961] flex-shrink-0" />
                   <span>{highlight}</span>
-                </li>
+                </motion.li>
               ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+            </motion.ul>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

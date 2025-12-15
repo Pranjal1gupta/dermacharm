@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const primaryLinks = [
   { href: '/', label: 'Home' },
@@ -22,29 +23,90 @@ const treatmentOptions = [
   { href: '/treatments/dermatosurgery', label: 'Dermatosurgery' },
 ];
 
+const linkVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const mobileMenuVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3 },
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: { duration: 0.2 },
+  },
+};
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAnimation(true);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <nav className="border-b border-[#C9A961]/30 bg-white/95 backdrop-blur-xl shadow-md shadow-[#D4C5B9]/20 sticky top-0 z-40">
       <div className="w-full px-2 xs:px-3 sm:px-4 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between h-12 xs:h-14 sm:h-16">
-            <div className="hidden md:flex flex-1 items-center space-x-2 lg:space-x-6 text-xs sm:text-sm font-medium text-[#404040]">
+            <motion.div 
+              className="hidden md:flex flex-1 items-center space-x-2 lg:space-x-6 text-xs sm:text-sm font-medium text-[#404040]"
+              variants={containerVariants}
+              initial="hidden"
+              animate={showAnimation ? "visible" : "hidden"}
+            >
               {primaryLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="px-1 xs:px-2 py-1 transition-colors hover:text-[#C9A961]">
-                  {link.label}
-                </Link>
+                <motion.div key={link.href} variants={linkVariants}>
+                  <Link href={link.href} className="px-1 xs:px-2 py-1 transition-colors hover:text-[#C9A961]">
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
-            <div className="flex flex-1 md:flex-none justify-center px-2 xs:px-0">
+            <motion.div 
+              className="flex flex-1 md:flex-none justify-center px-2 xs:px-0"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={showAnimation ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+            >
               <Link href="/" className="inline-flex items-center" aria-label="Dermacharm home">
                 <Image src="/logo.png" alt="Dermacharm" width={140} height={40} priority className="h-10 xs:h-12 sm:h-14 w-auto" />
               </Link>
-            </div>
+            </motion.div>
 
-            <div className="hidden md:flex flex-1 justify-end items-center space-x-2 lg:space-x-6 text-xs sm:text-sm font-medium text-[#404040]">
+            <motion.div 
+              className="hidden md:flex flex-1 justify-end items-center space-x-2 lg:space-x-6 text-xs sm:text-sm font-medium text-[#404040]"
+              variants={containerVariants}
+              initial="hidden"
+              animate={showAnimation ? "visible" : "hidden"}
+            >
               <div className="relative group">
                 <button
                   type="button"
@@ -72,17 +134,21 @@ export default function Navbar() {
                 </div>
               </div>
               {secondaryLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="px-1 xs:px-2 py-1 transition-colors hover:text-[#C9A961] text-xs lg:text-sm">
-                  {link.label}
-                </Link>
+                <motion.div key={link.href} variants={linkVariants}>
+                  <Link href={link.href} className="px-1 xs:px-2 py-1 transition-colors hover:text-[#C9A961] text-xs lg:text-sm">
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
-              <Link
-                href="/book"
-                className="bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white px-2 xs:px-3 lg:px-4 py-1 xs:py-1.5 lg:py-2 rounded-full text-xs lg:text-sm shadow-lg shadow-[#C9A961]/40 transition hover:-translate-y-0.5 hover:shadow-lg whitespace-nowrap"
-              >
-                Book Visit
-              </Link>
-            </div>
+              <motion.div variants={linkVariants}>
+                <Link
+                  href="/book"
+                  className="bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white px-2 xs:px-3 lg:px-4 py-1 xs:py-1.5 lg:py-2 rounded-full text-xs lg:text-sm shadow-lg shadow-[#C9A961]/40 transition hover:-translate-y-0.5 hover:shadow-lg whitespace-nowrap"
+                >
+                  Book Visit
+                </Link>
+              </motion.div>
+            </motion.div>
 
             <button
               type="button"
@@ -104,56 +170,80 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div
-        className={`md:hidden origin-top overflow-hidden bg-white/95 px-3 xs:px-4 pb-3 xs:pb-4 shadow-xl shadow-[#D4C5B9]/20 transition-all duration-300 ease-in-out ${
-          menuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="flex flex-col space-y-1.5 xs:space-y-2 pt-2 xs:pt-3 text-[#404040]">
-          {primaryLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-lg px-3 py-2 font-medium hover:bg-[#F5F5F5]/70 text-xs xs:text-sm transition"
-              onClick={() => setMenuOpen(false)}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="md:hidden origin-top overflow-hidden bg-white/95 px-3 xs:px-4 pb-3 xs:pb-4 shadow-xl shadow-[#D4C5B9]/20"
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <motion.div 
+              className="flex flex-col space-y-1.5 xs:space-y-2 pt-2 xs:pt-3 text-[#404040]"
+              variants={containerVariants}
+              initial="hidden"
+              animate={showAnimation ? "visible" : "hidden"}
             >
-              {link.label}
-            </Link>
-          ))}
-          <div className="rounded-lg border border-[#C9A961]/40 bg-[#FAFAF8] px-3 py-2 xs:py-2.5 mt-2">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#C9A961]">Treatments</p>
-            <div className="mt-1.5 xs:mt-2 flex flex-col space-y-0.5">
-              {treatmentOptions.map((option) => (
+              {primaryLinks.map((link) => (
+                <motion.div key={link.href} variants={linkVariants}>
+                  <Link
+                    href={link.href}
+                    className="rounded-lg px-3 py-2 font-medium hover:bg-[#F5F5F5]/70 text-xs xs:text-sm transition"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div 
+                className="rounded-lg border border-[#C9A961]/40 bg-[#FAFAF8] px-3 py-2 xs:py-2.5 mt-2"
+                variants={linkVariants}
+              >
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#C9A961]">Treatments</p>
+                <motion.div 
+                  className="mt-1.5 xs:mt-2 flex flex-col space-y-0.5"
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {treatmentOptions.map((option) => (
+                    <motion.div key={option.href} variants={linkVariants}>
+                      <Link
+                        href={option.href}
+                        className="rounded-lg px-3 py-1.5 text-xs font-medium hover:bg-[#E8DCC8]/40 transition"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {option.label}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
+              {secondaryLinks.map((link) => (
+                <motion.div key={link.href} variants={linkVariants}>
+                  <Link
+                    href={link.href}
+                    className="rounded-lg px-3 py-2 font-medium hover:bg-[#F5F5F5]/70 text-xs xs:text-sm transition"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div variants={linkVariants}>
                 <Link
-                  key={option.href}
-                  href={option.href}
-                  className="rounded-lg px-3 py-1.5 text-xs font-medium hover:bg-[#E8DCC8]/40 transition"
+                  href="/book"
+                  className="rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] px-4 py-2 text-center text-white shadow shadow-[#C9A961]/40 text-xs xs:text-sm font-medium transition hover:shadow-lg mt-1 block"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {option.label}
+                  Book Visit
                 </Link>
-              ))}
-            </div>
-          </div>
-          {secondaryLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-lg px-3 py-2 font-medium hover:bg-[#F5F5F5]/70 text-xs xs:text-sm transition"
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/book"
-            className="rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] px-4 py-2 text-center text-white shadow shadow-[#C9A961]/40 text-xs xs:text-sm font-medium transition hover:shadow-lg mt-1"
-            onClick={() => setMenuOpen(false)}
-          >
-            Book Visit
-          </Link>
-        </div>
-      </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

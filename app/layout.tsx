@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ChatWidget from '../components/ChatWidget';
 import Topbar from '../components/Topbar';
+import Preloader from '../components/Preloader';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,12 +25,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <body className={`${inter.className} bg-gradient-to-b from-[#E9F5F3] via-[#FFFFFF] to-[#CDBBA7]/40 text-[#2A3D45] antialiased`}>
+        <Preloader />
         <div className="relative min-h-screen">
           <header className="sticky top-0 z-50">
             <Topbar />
             <Navbar />
           </header>
-          <main className="flex flex-col pb-20">{children}</main>
+          <main className="flex flex-col">{children}</main>
           <Footer />
           <ChatWidget />
         </div>

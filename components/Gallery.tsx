@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { motion, type Variants } from 'framer-motion';
 
 const galleryImages = [
   { id: 'oasis', src: 'https://res.cloudinary.com/dlifnml9x/image/upload/v1764140088/store-images/store_1764140088836_mxyxi528g.webp', alt: 'Calming wellness lounge' },
@@ -11,6 +12,38 @@ const galleryImages = [
   { id: 'laser-lounge', src: 'https://res.cloudinary.com/dlifnml9x/image/upload/v1764140230/store-images/store_1764140230120_jxkvocq1v.webp', alt: 'Laser treatment technology room' },
   { id: 'ritual-bay', src: 'https://res.cloudinary.com/dlifnml9x/image/upload/v1764140236/store-images/store_1764140236741_rqtszz7s2.webp', alt: 'Minimalist ritual bay' },
 ];
+
+const headerVariants: Variants = {
+  hidden: { opacity: 0, y: -30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8 },
+  },
+};
+
+const subtitleVariants: Variants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: 0.2 },
+  },
+};
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.6 },
+  },
+};
+
+const buttonVariants: Variants = {
+  rest: { scale: 1 },
+  hover: { scale: 1.1 },
+  tap: { scale: 0.95 },
+};
 
 export default function Gallery() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -23,21 +56,38 @@ export default function Gallery() {
     return () => clearInterval(timer);
   }, []);
 
-  const prevSlide = () =>
+  const prevSlide = () => {
     setActiveIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
 
-  const nextSlide = () =>
+  const nextSlide = () => {
     setActiveIndex((prev) => (prev + 1) % galleryImages.length);
+  };
 
   return (
     <section className="py-6 xs:py-8 sm:py-10 md:py-12 bg-[#FAFAF7] px-2 xs:px-3 sm:px-4">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#404040] text-center mb-4 xs:mb-6 sm:mb-8">
+      <motion.div 
+        className="max-w-7xl mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
+      >
+        <motion.h2 
+          className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#404040] text-center mb-4 xs:mb-6 sm:mb-8"
+          variants={headerVariants}
+        >
           Gallery
-        </h2>
-        <h3 className="text-center text-xs xs:text-sm sm:text-base md:text-lg text-[#404040]/70 mb-6 xs:mb-8 sm:mb-10 md:mb-12">
+        </motion.h2>
+        <motion.h3 
+          className="text-center text-xs xs:text-sm sm:text-base md:text-lg text-[#404040]/70 mb-6 xs:mb-8 sm:mb-10 md:mb-12"
+          variants={subtitleVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           Explore our state-of-the-art facilities and treatments.
-        </h3>
+        </motion.h3>
 
         <div
           className="relative mx-auto w-full"
@@ -83,17 +133,24 @@ export default function Gallery() {
               }
 
               return (
-                <div
+                <motion.div
                   key={img.id}
-                  className="absolute top-1/2 left-1/2 rounded-lg xs:rounded-xl sm:rounded-2xl overflow-hidden shadow-xl transition-all duration-[900ms]"
+                  className="absolute top-1/2 left-1/2 rounded-lg xs:rounded-xl sm:rounded-2xl overflow-hidden shadow-xl"
+                  initial={false}
+                  animate={{
+                    opacity,
+                    zIndex,
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    ease: 'easeInOut',
+                  }}
                   style={{
                     width: 'clamp(200px, 50vw, 320px)',
                     height: 'clamp(260px, 65vw, 400px)',
                     transformStyle: 'preserve-3d',
-                    transform: `translate(-50%, -50%) translateX(${translateX}px)
-                              rotateY(${rotateY}deg) scale(${scale})`,
-                    zIndex,
-                    opacity,
+                    transform: `translate(-50%, -50%) translateX(${translateX}px) rotateY(${rotateY}deg) scale(${scale})`,
+                    transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 >
                   <Image
@@ -102,28 +159,36 @@ export default function Gallery() {
                     fill
                     className="object-cover"
                   />
-                </div>
+                </motion.div>
               );
             })}
           </div>
 
-          <button
+          <motion.button
             onClick={prevSlide}
-            className="absolute left-1 xs:left-2 sm:left-4 top-1/2 -translate-y-1/2 text-xl xs:text-2xl sm:text-3xl md:text-4xl bg-white border border-[#C9A961]/40 shadow-xl px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 rounded-full transition hover:bg-[#C9A961] hover:text-white hover:border-[#C9A961] z-40 flex-shrink-0 text-[#404040]"
+            className="absolute left-1 xs:left-2 sm:left-4 top-1/2 -translate-y-1/2 text-xl xs:text-2xl sm:text-3xl md:text-4xl bg-white border border-[#C9A961]/40 shadow-xl px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 rounded-full hover:bg-[#C9A961] hover:text-white hover:border-[#C9A961] z-40 flex-shrink-0 text-[#404040]"
             aria-label="Previous slide"
+            variants={buttonVariants}
+            initial="rest"
+            whileHover="hover"
+            whileTap="tap"
           >
             ‹
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
             onClick={nextSlide}
-            className="absolute right-1 xs:right-2 sm:right-4 top-1/2 -translate-y-1/2 text-xl xs:text-2xl sm:text-3xl md:text-4xl bg-white border border-[#C9A961]/40 shadow-xl px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 rounded-full transition hover:bg-[#C9A961] hover:text-white hover:border-[#C9A961] z-40 flex-shrink-0 text-[#404040]"
+            className="absolute right-1 xs:right-2 sm:right-4 top-1/2 -translate-y-1/2 text-xl xs:text-2xl sm:text-3xl md:text-4xl bg-white border border-[#C9A961]/40 shadow-xl px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 rounded-full hover:bg-[#C9A961] hover:text-white hover:border-[#C9A961] z-40 flex-shrink-0 text-[#404040]"
             aria-label="Next slide"
+            variants={buttonVariants}
+            initial="rest"
+            whileHover="hover"
+            whileTap="tap"
           >
             ›
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
