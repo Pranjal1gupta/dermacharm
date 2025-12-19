@@ -8,12 +8,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 const primaryLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-];
-
-const secondaryLinks = [
+  { href: '/services', label: 'Treatments' },
   { href: '/contact', label: 'Contact' },
 ];
+
 
 const treatmentOptions = [
   { href: '/treatments/skin', label: 'Skin Treatments' },
@@ -133,17 +131,11 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              {secondaryLinks.map((link) => (
-                <motion.div key={link.href} variants={linkVariants}>
-                  <Link href={link.href} className="px-1 xs:px-2 py-1 transition-colors hover:text-[#C9A961] text-xs lg:text-sm">
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+              
               <motion.div variants={linkVariants}>
                 <Link
                   href="/book"
-                  className="bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white px-2 xs:px-3 lg:px-4 py-1 xs:py-1.5 lg:py-2 rounded-full text-xs lg:text-sm shadow-lg shadow-[#C9A961]/40 transition hover:-translate-y-0.5 hover:shadow-lg whitespace-nowrap"
+                  className="bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white px-2 xs:px-3 lg:px-4 py-1 xs:py-1.5 lg:py-2 rounded-full text-xs lg:text-sm shadow-lg shadow-[#C9A961]/40 transition hover:-translate-y-0.5 hover:shadow-lg whitespace-nowrap animate-bounce"
                 >
                   Book Visit
                 </Link>
@@ -220,21 +212,11 @@ export default function Navbar() {
                   ))}
                 </motion.div>
               </motion.div>
-              {secondaryLinks.map((link) => (
-                <motion.div key={link.href} variants={linkVariants}>
-                  <Link
-                    href={link.href}
-                    className="rounded-lg px-3 py-2 font-medium hover:bg-[#F5F5F5]/70 text-xs xs:text-sm transition"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+              
               <motion.div variants={linkVariants}>
                 <Link
                   href="/book"
-                  className="rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] px-4 py-2 text-center text-white shadow shadow-[#C9A961]/40 text-xs xs:text-sm font-medium transition hover:shadow-lg mt-1 block"
+                  className="rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] px-4 py-2 text-center text-white shadow shadow-[#C9A961]/40 text-xs xs:text-sm font-medium transition hover:shadow-lg mt-1 block animate-bounce"
                   onClick={() => setMenuOpen(false)}
                 >
                   Book Visit

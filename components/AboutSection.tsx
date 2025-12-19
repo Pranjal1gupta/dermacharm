@@ -6,30 +6,42 @@ import { motion } from 'framer-motion';
 
 const treatmentSlides = [
   {
-    id: 'laser-artistry',
-    caption: 'Laser artistry session',
-    detail: 'Hybrid resurfacing mapped to facial contours',
+    id: 'laser-resurfacing',
+    caption: 'Advanced laser resurfacing',
+    detail: 'Precision laser treatments for skin rejuvenation and pigment correction',
     src: 'https://images.unsplash.com/photo-1713085085470-fba013d67e65?fm=jpg&q=80&w=800&ixlib=rb-4.1.0',
   },
   {
-    id: 'cellular-regen',
-    caption: 'Cellular regeneration lab',
-    detail: 'PRP boosters blended with light therapy',
+    id: 'hair-restoration',
+    caption: 'Hair restoration therapy',
+    detail: 'PRP and GFC therapies combined with advanced growth factor treatments',
     src: 'https://images.unsplash.com/photo-1742280159636-3a06652ac9d9?fm=jpg&q=80&w=800&ixlib=rb-4.1.0',
   },
   {
-    id: 'scalp-ritual',
-    caption: 'Scalp ritual suite',
-    detail: 'Detox massage paired with growth factors',
+    id: 'scalp-treatment',
+    caption: 'Scalp treatment protocol',
+    detail: 'Comprehensive hair fall management with personalized treatment plans',
     src: 'https://static.glossgenius.com/public/service/927c7da91558b470456567fd78eeae0cc63978d3/image/91d7a4a3a5dfe35dcf0aae4b0ceff560.jpg',
   },
 ];
 
 const careHighlights = [
-  'Board-certified trichology and aesthetic dermatology under one roof',
-  'Evidence-led protocols complemented with hormonal and nutritional profiling',
-  'Concierge follow-ups with digital skin journals for measurable progress',
-  'Private therapy pods designed for sensory calm and post-care recovery',
+  'Delivering safe and effective treatments using advanced technology',
+  'Offering personalized solutions rather than one-size-fits-all procedures',
+  'Educating patients to make informed decisions about their skin and hair health',
+  'Maintaining honesty, integrity, and medical ethics in every treatment',
+  'Enhancing natural beauty while preserving skin health and confidence',
+];
+
+const docSpecialties = [
+  'Acne & acne scar management',
+  'Anti-aging treatments (Botox, fillers, skin rejuvenation)',
+  'Advanced medi facials & Hydrafacial',
+  'Hair fall management, PRP & GFC therapies',
+  'Laser hair reduction and pigment treatments',
+  'HIFU (High intensity focused ultrasound)',
+  'MNRF (Microneedling Radiofrequency)',
+  'Mole, wart, and skin tag removal',
 ];
 
 const headerVariants = {
@@ -61,7 +73,11 @@ const containerVariants = {
   },
 };
 
-export default function AboutSection() {
+interface AboutSectionProps {
+  showFullContent?: boolean;
+}
+
+export default function AboutSection({ showFullContent = false }: AboutSectionProps) {
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
@@ -97,15 +113,23 @@ export default function AboutSection() {
             className="mt-2 xs:mt-3 sm:mt-4 text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#404040]"
             variants={itemVariants}
           >
-            Where medical precision meets sensorial calm
+            Modern aesthetics meets medical excellence
           </motion.h2>
           <motion.p 
             className="mt-2 xs:mt-3 sm:mt-4 text-xs xs:text-sm sm:text-base md:text-lg text-[#404040]/70 mx-auto max-w-3xl leading-relaxed"
             variants={itemVariants}
           >
-            Founded by Dr. Anurag Agrahari, Dermacharm Aesthetics integrates cutting-edge dermatological science with
-            luxurious wellness experiences, delivering personalized treatments that honor both clinical excellence and
-            holistic patient care.
+            Dermacharm Aesthetics is a modern skin, hair, and aesthetic clinic dedicated to delivering safe, effective, 
+            and scientifically backed treatments and care. Located in Vikas Khand, Gomti Nagar, Lucknow, our clinic blends 
+            medical expertise with advanced aesthetic technology to help patients look and feel their best.
+          </motion.p>
+          <motion.p 
+            className="mt-2 xs:mt-3 sm:mt-4 text-xs xs:text-sm sm:text-base md:text-lg text-[#404040]/70 mx-auto max-w-3xl leading-relaxed"
+            variants={itemVariants}
+          >
+            We specialize in aesthetic treatments, laser procedures, and advanced skin & hair solutions, offering personalized care 
+            tailored to each individual&apos;s skin type, concern, and lifestyle. Every treatment plan is thoughtfully designed to achieve 
+            natural-looking results while prioritizing patient safety and comfort.
           </motion.p>
         </motion.div>
 
@@ -122,7 +146,7 @@ export default function AboutSection() {
                 className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
                 variants={itemVariants}
               >
-                Founder
+                Medical Director
               </motion.p>
               <motion.h3 
                 className="mt-1 xs:mt-2 sm:mt-3 text-lg xs:text-xl sm:text-2xl md:text-3xl font-semibold text-[#404040]"
@@ -134,9 +158,17 @@ export default function AboutSection() {
                 className="mt-1.5 xs:mt-2 sm:mt-2 text-xs xs:text-sm sm:text-base text-[#404040]/70 leading-relaxed"
                 variants={itemVariants}
               >
-                Board-certified dermatologist with extensive expertise in aesthetic and regenerative medicine. Dedicated to
-                crafting personalized treatment protocols that combine cutting-edge clinical technology with holistic
-                wellness for transformative skin and hair health.
+                Consultant Aesthetic Physician and Medical Director at Dermacharm Aesthetics. A skilled and compassionate aesthetic physician 
+                with special interest in aesthetic medicine, laser treatments, injectables, and advanced skin & hair procedures. With a strong 
+                foundation in evidence-based medicine, Dr. Anurag believes in delivering treatments that are safe, ethical, and personalized.
+              </motion.p>
+              <motion.p 
+                className="mt-2 xs:mt-2 sm:mt-3 text-xs xs:text-sm sm:text-base text-[#404040]/70 leading-relaxed"
+                variants={itemVariants}
+              >
+                Known for his patient-first approach, he focuses on understanding individual concerns, skin types, and expectations. His philosophy 
+                emphasizes natural-looking results, long-term skin health, and realistic outcomes rather than over-treatment. He regularly updates 
+                his knowledge with latest advancements to ensure world-class care using modern technologies and globally accepted protocols.
               </motion.p>
             </motion.div>
             <motion.div 
@@ -161,11 +193,11 @@ export default function AboutSection() {
               </motion.div>
             </motion.div>
             <motion.p 
-              className="text-xs xs:text-sm sm:text-base text-[#404040] leading-relaxed"
+              className="text-xs xs:text-sm sm:text-base text-[#404040] leading-relaxed italic"
               variants={itemVariants}
             >
-              &quot;Every protocol is sketched from lab diagnostics, emotional wellbeing, and biomimetic actives. We believe in
-              rituals that respect physiology and truly transform the stories skin wants to tell.&quot;
+              &quot;Aesthetic care is not about changing who you are, but about enhancing your natural charm with science, precision, and care. 
+              We focus on understanding individual concerns and delivering treatments that prioritize medical ethics, safety, and natural-looking results.&quot;
             </motion.p>
           </motion.div>
           <motion.div 
@@ -188,87 +220,151 @@ export default function AboutSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <p className="text-[0.65rem] xs:text-xs uppercase tracking-[0.4em] text-white/70">Credentials</p>
-              <p className="text-[0.7rem] xs:text-xs sm:text-sm font-semibold mt-0.5 xs:mt-1">Fellow, American Academy of Dermatology</p>
-              <p className="text-[0.7rem] xs:text-xs sm:text-sm font-semibold">Member, Global Regenerative Council</p>
+              <p className="text-[0.65rem] xs:text-xs uppercase tracking-[0.4em] text-white/70">Specialization</p>
+              <p className="text-[0.7rem] xs:text-xs sm:text-sm font-semibold mt-0.5 xs:mt-1">Aesthetic Medicine & Laser Treatments</p>
+              <p className="text-[0.7rem] xs:text-xs sm:text-sm font-semibold">Advanced Skin & Hair Procedures</p>
             </motion.div>
           </motion.div>
         </motion.div>
 
-        <motion.div 
-          className="grid items-center gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr]"
-          variants={containerVariants}
-        >
-          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[#C9A961]/40 bg-white/90 shadow-2xl shadow-[#D4C5B9]/40">
-            <div className="relative h-64 sm:h-80 w-full">
-              {treatmentSlides.map((slide, index) => (
-                <div
-                  key={slide.id}
-                  className={`absolute inset-0 transition-opacity duration-700 ${index === activeSlide ? 'opacity-100' : 'opacity-0'}`}
-                >
-                  <Image src={slide.src} alt={slide.caption} fill sizes="(min-width: 768px) 500px, 100vw" className="object-cover" />
-                  <div className="absolute inset-x-4 sm:inset-x-6 bottom-4 sm:bottom-6 rounded-lg sm:rounded-2xl bg-white/90 px-4 sm:px-6 py-3 sm:py-4 text-[#404040]">
-                    <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A961]">{slide.caption}</p>
-                    <p className="text-sm sm:text-base font-medium mt-1">{slide.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="flex items-center justify-between border-t border-[#C9A961]/20 bg-white/90 px-3 sm:px-6 py-3 sm:py-4 gap-2 sm:gap-4">
-              <button
-                type="button"
-                onClick={() => setActiveSlide((prev) => (prev - 1 + treatmentSlides.length) % treatmentSlides.length)}
-                className="rounded-full border border-[#C9A961]/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#404040] transition hover:bg-[#C9A961]/10 hover:border-[#C9A961]"
-              >
-                Prev
-              </button>
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                {treatmentSlides.map((slide, index) => (
-                  <span key={slide.id} className={`h-1 rounded-full transition-all ${index === activeSlide ? 'w-8 sm:w-10 bg-[#C9A961]' : 'w-3 sm:w-4 bg-[#E0E0E0]'}`} />
-                ))}
-              </div>
-              <button
-                type="button"
-                onClick={() => setActiveSlide((prev) => (prev + 1) % treatmentSlides.length)}
-                className="rounded-full border border-[#C9A961]/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#404040] transition hover:bg-[#C9A961]/10 hover:border-[#C9A961]"
-              >
-                Next
-              </button>
-            </div>
-          </div>
+        {showFullContent && (
+          <motion.div 
+            className="text-center space-y-4 xs:space-y-5 sm:space-y-6 py-6 xs:py-8 sm:py-10 md:py-12 border-y border-[#C9A961]/20"
+            variants={containerVariants}
+          >
+            <motion.p 
+              className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
+              variants={itemVariants}
+            >
+              Our Mission
+            </motion.p>
+            <motion.h3 
+              className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-semibold text-[#404040]"
+              variants={itemVariants}
+            >
+              Ethical, evidence-based aesthetic care
+            </motion.h3>
+            <motion.p 
+              className="mt-3 xs:mt-4 sm:mt-5 text-xs xs:text-sm sm:text-base text-[#404040]/70 mx-auto max-w-2xl leading-relaxed"
+              variants={itemVariants}
+            >
+              Our mission at Dermacharm Aesthetics is to provide ethical, evidence-based, and result-oriented aesthetic treatments 
+              and care in a warm, transparent, and patient-centric environment. We believe that aesthetic care is not about changing 
+              who you are, but about enhancing your natural charm with science, precision, and care.
+            </motion.p>
+          </motion.div>
+        )}
+
+        {showFullContent && (
           <motion.div 
             className="space-y-4 sm:space-y-6"
             variants={containerVariants}
           >
             <motion.p 
-              className="text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
+              className="text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] text-[#C9A961] text-center"
               variants={itemVariants}
             >
-              Why patients choose us
+              Expertise & Specialties
             </motion.p>
-            <motion.h4 
-              className="text-2xl sm:text-3xl font-semibold text-[#404040]"
+            <motion.h3 
+              className="text-2xl sm:text-3xl font-semibold text-[#404040] text-center"
               variants={itemVariants}
             >
-              Treatment suites choreographed for measurable calm
-            </motion.h4>
-            <motion.ul 
-              className="space-y-3 sm:space-y-4 text-sm sm:text-base text-[#404040]/80"
+              Advanced treatments across multiple disciplines
+            </motion.h3>
+            <motion.div 
+              className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
               variants={containerVariants}
             >
-              {careHighlights.map((highlight) => (
-                <motion.li 
-                  key={highlight} 
-                  className="flex gap-3"
+              {docSpecialties.map((specialty) => (
+                <motion.div 
+                  key={specialty} 
+                  className="rounded-lg sm:rounded-xl border border-[#C9A961]/40 bg-gradient-to-br from-white to-[#FAFAF8] px-3 sm:px-4 py-3 sm:py-4 text-center shadow-md shadow-[#D4C5B9]/20"
                   variants={itemVariants}
                 >
-                  <span className="mt-1.5 h-2 w-2 rounded-full bg-[#C9A961] flex-shrink-0" />
-                  <span>{highlight}</span>
-                </motion.li>
+                  <p className="text-xs sm:text-sm font-medium text-[#404040]">{specialty}</p>
+                </motion.div>
               ))}
-            </motion.ul>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        )}
+
+        {showFullContent && (
+          <motion.div 
+            className="grid items-center gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr]"
+            variants={containerVariants}
+          >
+            <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[#C9A961]/40 bg-white/90 shadow-2xl shadow-[#D4C5B9]/40">
+              <div className="relative h-64 sm:h-80 w-full">
+                {treatmentSlides.map((slide, index) => (
+                  <div
+                    key={slide.id}
+                    className={`absolute inset-0 transition-opacity duration-700 ${index === activeSlide ? 'opacity-100' : 'opacity-0'}`}
+                  >
+                    <Image src={slide.src} alt={slide.caption} fill sizes="(min-width: 768px) 500px, 100vw" className="object-cover" />
+                    <div className="absolute inset-x-4 sm:inset-x-6 bottom-4 sm:bottom-6 rounded-lg sm:rounded-2xl bg-white/90 px-4 sm:px-6 py-3 sm:py-4 text-[#404040]">
+                      <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A961]">{slide.caption}</p>
+                      <p className="text-sm sm:text-base font-medium mt-1">{slide.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center justify-between border-t border-[#C9A961]/20 bg-white/90 px-3 sm:px-6 py-3 sm:py-4 gap-2 sm:gap-4">
+                <button
+                  type="button"
+                  onClick={() => setActiveSlide((prev) => (prev - 1 + treatmentSlides.length) % treatmentSlides.length)}
+                  className="rounded-full border border-[#C9A961]/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#404040] transition hover:bg-[#C9A961]/10 hover:border-[#C9A961]"
+                >
+                  Prev
+                </button>
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  {treatmentSlides.map((slide, index) => (
+                    <span key={slide.id} className={`h-1 rounded-full transition-all ${index === activeSlide ? 'w-8 sm:w-10 bg-[#C9A961]' : 'w-3 sm:w-4 bg-[#E0E0E0]'}`} />
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveSlide((prev) => (prev + 1) % treatmentSlides.length)}
+                  className="rounded-full border border-[#C9A961]/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#404040] transition hover:bg-[#C9A961]/10 hover:border-[#C9A961]"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+            <motion.div 
+              className="space-y-4 sm:space-y-6"
+              variants={containerVariants}
+            >
+              <motion.p 
+                className="text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
+                variants={itemVariants}
+              >
+                Our Commitment
+              </motion.p>
+              <motion.h4 
+                className="text-2xl sm:text-3xl font-semibold text-[#404040]"
+                variants={itemVariants}
+              >
+                Patient-centric care with medical ethics
+              </motion.h4>
+              <motion.ul 
+                className="space-y-3 sm:space-y-4 text-sm sm:text-base text-[#404040]/80"
+                variants={containerVariants}
+              >
+                {careHighlights.map((highlight) => (
+                  <motion.li 
+                    key={highlight} 
+                    className="flex gap-3"
+                    variants={itemVariants}
+                  >
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-[#C9A961] flex-shrink-0" />
+                    <span>{highlight}</span>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </motion.div>
+          </motion.div>
+        )}
       </motion.div>
     </section>
   );
