@@ -140,6 +140,7 @@ export default function Hero() {
           </div>
         ))}
       </div>
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-white/20 to-white/80 pointer-events-none" />
       <div 
         className="relative w-full px-2 xs:px-3 sm:px-4 pb-6 xs:pb-8 sm:pb-10 pt-8 xs:pt-10 sm:pt-12 lg:pt-16 text-gray-900"
         style={{ height: '100vh' }}

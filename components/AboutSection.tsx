@@ -3,46 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-
-const treatmentSlides = [
-  {
-    id: 'laser-resurfacing',
-    caption: 'Advanced laser resurfacing',
-    detail: 'Precision laser treatments for skin rejuvenation and pigment correction',
-    src: 'https://images.unsplash.com/photo-1713085085470-fba013d67e65?fm=jpg&q=80&w=800&ixlib=rb-4.1.0',
-  },
-  {
-    id: 'hair-restoration',
-    caption: 'Hair restoration therapy',
-    detail: 'PRP and GFC therapies combined with advanced growth factor treatments',
-    src: 'https://images.unsplash.com/photo-1742280159636-3a06652ac9d9?fm=jpg&q=80&w=800&ixlib=rb-4.1.0',
-  },
-  {
-    id: 'scalp-treatment',
-    caption: 'Scalp treatment protocol',
-    detail: 'Comprehensive hair fall management with personalized treatment plans',
-    src: 'https://static.glossgenius.com/public/service/927c7da91558b470456567fd78eeae0cc63978d3/image/91d7a4a3a5dfe35dcf0aae4b0ceff560.jpg',
-  },
-];
-
-const careHighlights = [
-  'Delivering safe and effective treatments using advanced technology',
-  'Offering personalized solutions rather than one-size-fits-all procedures',
-  'Educating patients to make informed decisions about their skin and hair health',
-  'Maintaining honesty, integrity, and medical ethics in every treatment',
-  'Enhancing natural beauty while preserving skin health and confidence',
-];
-
-const docSpecialties = [
-  'Acne & acne scar management',
-  'Anti-aging treatments (Botox, fillers, skin rejuvenation)',
-  'Advanced medi facials & Hydrafacial',
-  'Hair fall management, PRP & GFC therapies',
-  'Laser hair reduction and pigment treatments',
-  'HIFU (High intensity focused ultrasound)',
-  'MNRF (Microneedling Radiofrequency)',
-  'Mole, wart, and skin tag removal',
-];
+import { treatmentSlides, careHighlights, docSpecialties } from '@/lib/data';
 
 const headerVariants = {
   hidden: { opacity: 0, y: -20 },

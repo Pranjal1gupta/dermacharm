@@ -168,10 +168,10 @@ export default function BookPage() {
               />
             </div>
 
-            <div className="space-y-3 xs:space-y-4 sm:space-y-5 pt-2 xs:pt-3 sm:pt-4">
+            <div className="space-y-3 xs:space-y-4 sm:space-y-5 pt-2 xs:pt-3 sm:pt-4 flex justify-center">
               <button
                 type="submit"
-                className="w-full rounded-full bg-[#C9A961] px-4 xs:px-6 sm:px-8 py-2 xs:py-2.5 sm:py-3 text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-lg shadow-[#D4C5B9]/60 transition hover:-translate-y-0.5 hover:shadow-[#D4C5B9]/80 hover:bg-[#B8935D]"
+                className="group relative px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105 items-center "
               >
                 Confirm Booking
               </button>

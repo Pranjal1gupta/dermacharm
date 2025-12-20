@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -58,6 +59,24 @@ const treatments = [
     description:
       'Alternating microcurrent frequencies and buccal massage activate muscle memory, release jaw tension, and refine cheek architecture for editorial-grade definition.',
     benefits: ['Defined jawline', 'Relaxed facial tension', 'Longer-lasting lift'],
+  },
+  {
+    id: 'radiance-renewal',
+    name: 'Radiance Renewal Protocol',
+    image: 'https://images.unsplash.com/photo-1638712645318-f47cdfd4e45e?w=500&q=80',
+    shortDescription: 'Advanced radiofrequency microneedling stimulates collagen neogenesis and tightens skin architecture at multiple depths.',
+    description:
+      'This transformative protocol combines fractional radiofrequency with precision microneedling to remodel collagen scaffolding, erase textural imprints, and restore youthful elasticity across face, neck, and décolletage.',
+    benefits: ['Aggressive collagen remodeling', 'Profound skin tightening', 'Refined texture and pores'],
+  },
+  {
+    id: 'glow-enzyme',
+    name: 'Glow Enzyme Metamorphosis',
+    image: 'https://images.unsplash.com/photo-1599288894066-3df0c35efc28?w=500&q=80',
+    shortDescription: 'Multi-enzymatic peels dissolve dead cell layers while probiotics reseed skin microflora for luminous resilience.',
+    description:
+      'A catalyst treatment layering papaya, pumpkin, and bromelain enzymes with gentle yet effective exfoliation, balanced by prebiotic infusions to restore protective microbiome equilibrium and unveil translucent, glass-like radiance.',
+    benefits: ['Enzymatic deep exfoliation', 'Microbiome restoration', 'Luminous, glowing skin'],
   },
 ];
 
@@ -139,7 +158,7 @@ export default function TreatmentsSection() {
 
         {/* Treatments Grid */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -148,7 +167,7 @@ export default function TreatmentsSection() {
           {treatments.map((treatment) => (
             <motion.div 
               key={treatment.id} 
-              className="group relative overflow-hidden rounded-3xl h-72 lg:h-80 shadow-2xl shadow-[#D4C5B9]/30 hover:shadow-3xl hover:shadow-[#C9A961]/20 transition-all duration-500 border border-[#C9A961]/20 hover:border-[#C9A961]/40 cursor-pointer"
+              className="group relative overflow-hidden rounded-2xl h-56 lg:h-64 shadow-2xl shadow-[#D4C5B9]/30 hover:shadow-3xl hover:shadow-[#C9A961]/20 transition-all duration-500 border border-[#C9A961]/20 hover:border-[#C9A961]/40 cursor-pointer"
               onClick={() => setSelectedTreatment(treatment)}
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
@@ -167,26 +186,36 @@ export default function TreatmentsSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
 
               {/* Front Card Content */}
-              <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end">
-                <h3 className="text-xl lg:text-2xl font-bold text-white text-center mb-2 leading-tight">{treatment.name}</h3>
-                <p className="text-xs lg:text-sm text-white/80 text-center font-medium uppercase tracking-wider">
+              <div className="absolute inset-0 p-4 lg:p-5 flex flex-col justify-end">
+                <h3 className="text-base lg:text-lg font-bold text-white text-center mb-1 leading-tight">{treatment.name}</h3>
+                <p className="text-xs text-white/80 text-center font-medium uppercase tracking-wider">
                   Tap to explore
                 </p>
               </div>
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#C9A961]/95 to-[#E8DCC8]/95 p-6 lg:p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm">
-                <p className="text-sm lg:text-base font-medium leading-relaxed text-white/95 mb-6 lg:mb-8">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#C9A961]/95 to-[#E8DCC8]/95 p-4 lg:p-5 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm">
+                <p className="text-xs lg:text-sm font-medium leading-relaxed text-white/95 mb-4">
                   {truncateCopy(treatment.shortDescription)}
                 </p>
                 <div className="flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity delay-150">
-                  <div className="w-2 h-2 bg-white/60 rounded-full mr-2 animate-pulse" />
-                  <span className="text-xs uppercase tracking-[0.3em] font-semibold text-white">Preview Ritual</span>
+                  <div className="w-1.5 h-1.5 bg-white/60 rounded-full mr-1.5 animate-pulse" />
+                  <span className="text-xs uppercase tracking-[0.2em] font-semibold text-white">Preview</span>
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
+
+        {/* View More Button */}
+        <div className="flex justify-center mt-12 lg:mt-16">
+          <Link href="/services">
+            <button className="group relative px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105">
+              <span className="relative z-10">Explore Our Treatments</span>
+              <div className="absolute inset-0 bg-white/20 -skew-x-12 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            </button>
+          </Link>
+        </div>
       </div>
 
       {/* Modal */}
