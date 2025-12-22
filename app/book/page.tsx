@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { motion } from "framer-motion";
 import { services } from "@/lib/data";
 import * as Select from "@radix-ui/react-select";
 import { ChevronDown } from "lucide-react";
@@ -189,12 +190,42 @@ ${name}
     )}&body=${encodeURIComponent(emailBody)}`;
 
     window.open(mailtoUrl, "_blank");
+    setSubmitted(true);
+    setFormData({ name: '', email: '', phone: '', treatmentType: '', preferredDate: '', preferredTime: '', concerns: '' });
+    setTimeout(() => setSubmitted(false), 3000);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
   };
 
   return (
     <section className="bg-[#FAFAF8] w-full px-2 xs:px-3 sm:px-4 py-6 xs:py-8 sm:py-10 md:py-12">
-      <div className="mx-auto max-w-4xl space-y-8 xs:space-y-10 sm:space-y-12 md:space-y-14">
-        <div className="text-center">
+      <motion.div
+        className="mx-auto max-w-4xl space-y-8 xs:space-y-10 sm:space-y-12 md:space-y-14"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.div className="text-center" variants={itemVariants}>
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C9A961]">
             Schedule Your Visit
           </p>
@@ -205,14 +236,17 @@ ${name}
             Secure your appointment with our board-certified dermatologists. Our
             concierge team will confirm your booking within one business day.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="rounded-2xl xs:rounded-2xl sm:rounded-3xl border border-[#C9A961]/50 bg-white/90 p-4 xs:p-6 sm:p-8 md:p-10 shadow-lg shadow-[#D4C5B9]/30">
+        <motion.div
+          className="rounded-2xl xs:rounded-2xl sm:rounded-3xl border border-[#C9A961]/50 bg-white/90 p-4 xs:p-6 sm:p-8 md:p-10 shadow-lg shadow-[#D4C5B9]/30"
+          variants={itemVariants}
+        >
           <form
             onSubmit={handleSubmit}
             className="space-y-4 xs:space-y-5 sm:space-y-6"
           >
-            <div className="grid gap-4 xs:gap-5 sm:gap-6 md:grid-cols-2">
+            <motion.div className="grid gap-4 xs:gap-5 sm:gap-6 md:grid-cols-2" variants={itemVariants}>
               <div>
                 <label
                   htmlFor="book-name"
@@ -252,9 +286,9 @@ ${name}
                   placeholder="your@email.com"
                 />
               </div>
-            </div>
+            </motion.div>
 
-            <div className="grid gap-4 xs:gap-5 sm:gap-6 md:grid-cols-2">
+            <motion.div className="grid gap-4 xs:gap-5 sm:gap-6 md:grid-cols-2" variants={itemVariants}>
               <div>
                 <label
                   htmlFor="book-phone"
@@ -313,9 +347,9 @@ ${name}
                   </Select.Portal>
                 </Select.Root>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="grid gap-4 xs:gap-5 sm:gap-6 md:grid-cols-2">
+            <motion.div className="grid gap-4 xs:gap-5 sm:gap-6 md:grid-cols-2" variants={itemVariants}>
               <div>
                 <label
                   htmlFor="book-date"
@@ -374,9 +408,9 @@ ${name}
                   </Select.Portal>
                 </Select.Root>
               </div>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={itemVariants}>
               <label
                 htmlFor="book-concerns"
                 className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#404040]"
@@ -393,52 +427,61 @@ ${name}
                 className="mt-1.5 xs:mt-2 sm:mt-3 w-full rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-white px-3 xs:px-4 sm:px-4 py-2 xs:py-2.5 sm:py-3 text-xs sm:text-sm text-[#404040] outline-none transition focus:border-[#C9A961] focus:ring-2 focus:ring-[#C9A961]/40 resize-none"
                 placeholder="Tell us about your skin/hair concerns and what you hope to achieve..."
               />
-            </div>
+            </motion.div>
 
-            <div className="space-y-3 xs:space-y-4 sm:space-y-5 pt-2 xs:pt-3 sm:pt-4 flex flex-col items-center">
+            <motion.div
+              className="space-y-3 xs:space-y-4 sm:space-y-5 pt-2 xs:pt-3 sm:pt-4 flex flex-col items-center"
+              variants={itemVariants}
+            >
               <div className="flex flex-wrap gap-3 xs:gap-4 sm:gap-5 justify-center">
-                {/* <button
-                  type="submit"
-                  className="group relative px-6 xs:px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105"
-                >
-                  Confirm Booking
-                </button> */}
-
-                <button
+                <motion.button
                   type="button"
                   onClick={handleWhatsAppBooking}
-                  className="group relative px-6 xs:px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105"
+                  className="group relative px-6 xs:px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Confirm via WhatsApp
-                </button>
+                </motion.button>
 
-                <button
+                <motion.button
                   type="button"
                   onClick={handleEmailBooking}
-                  className="group relative px-6 xs:px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105"
+                  className="group relative px-6 xs:px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Confirm via Email
-                </button>
+                </motion.button>
               </div>
 
               {submitted && (
-                <div className="rounded-lg xs:rounded-xl sm:rounded-2xl bg-[#E8DCC8] px-3 xs:px-4 sm:px-6 py-3 xs:py-4 sm:py-5 text-xs xs:text-xs sm:text-sm font-medium text-[#404040] text-center">
+                <motion.div
+                  className="rounded-lg xs:rounded-xl sm:rounded-2xl bg-[#E8DCC8] px-3 xs:px-4 sm:px-6 py-3 xs:py-4 sm:py-5 text-xs xs:text-xs sm:text-sm font-medium text-[#404040] text-center"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <p className="font-semibold">✓ Booking request received!</p>
                   <p className="mt-1 text-[#404040]/70">
                     Our concierge team will confirm your appointment within one
                     business day.
                   </p>
-                </div>
+                </motion.div>
               )}
-            </div>
+            </motion.div>
 
-            <p className="text-xs text-[#404040]/60 text-center pt-2">
+            <motion.p
+              className="text-xs text-[#404040]/60 text-center pt-2"
+              variants={itemVariants}
+            >
               * Required fields. We respect your privacy and will never share
               your information.
-            </p>
+            </motion.p>
           </form>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

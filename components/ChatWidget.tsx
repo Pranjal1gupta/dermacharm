@@ -10,9 +10,9 @@ export default function ChatWidget() {
   const [message, setMessage] = useState('');
 
   return (
-    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end space-y-3 sm:space-y-4">
+    <div className="fixed bottom-2 xs:bottom-3 sm:bottom-6 right-2 xs:right-3 sm:right-6 z-50 flex flex-col items-end space-y-2 xs:space-y-3 sm:space-y-4">
       <div
-        className={`w-72 sm:w-80 overflow-hidden rounded-2xl sm:rounded-3xl border border-[#E8D5B5]/80 bg-white/95 shadow-2xl shadow-[#D4C5B9]/60 ring-1 ring-white/40 transition-all duration-300 max-h-[60vh] sm:max-h-96 ${
+        className={`w-64 xs:w-72 sm:w-80 overflow-hidden rounded-2xl sm:rounded-3xl border border-[#E8D5B5]/80 bg-white/95 shadow-2xl shadow-[#D4C5B9]/60 ring-1 ring-white/40 transition-all duration-300 max-h-[55vh] xs:max-h-[60vh] sm:max-h-96 ${
           open ? 'pointer-events-auto translate-y-0 opacity-100' : 'pointer-events-none translate-y-6 opacity-0'
         }`}
       >
@@ -65,16 +65,16 @@ export default function ChatWidget() {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="relative inline-flex items-center gap-2 sm:gap-3 rounded-full bg-[#8B6F47] px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm text-white shadow-xl shadow-[#D4C5B9]/70 transition hover:-translate-y-0.5"
+        className="relative inline-flex items-center gap-1.5 xs:gap-2 sm:gap-3 rounded-full bg-[#8B6F47] px-3 xs:px-4 sm:px-6 py-2 xs:py-2.5 sm:py-3 text-xs sm:text-sm text-white shadow-xl shadow-[#D4C5B9]/70 transition hover:-translate-y-0.5"
       >
         {!open && (
-          <span className="absolute -right-1 -top-1 flex h-3 w-3">
+          <span className="absolute -right-1 -top-1 flex h-2.5 xs:h-3 w-2.5 xs:w-3">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C9A961] opacity-75" />
-            <span className="relative inline-flex h-3 w-3 rounded-full bg-[#C9A961]" />
+            <span className="relative inline-flex h-full w-full rounded-full bg-[#C9A961]" />
           </span>
         )}
-        <span className="flex h-8 sm:h-10 w-8 sm:w-10 items-center justify-center rounded-full bg-white/20 flex-shrink-0">
-          <MessageCircle className="h-4 sm:h-5 w-4 sm:w-5" />
+        <span className="flex h-7 xs:h-8 sm:h-10 w-7 xs:w-8 sm:w-10 items-center justify-center rounded-full bg-white/20 flex-shrink-0">
+          <MessageCircle className="h-3.5 xs:h-4 sm:h-5 w-3.5 xs:w-4 sm:w-5" />
         </span>
         <span className="text-left hidden sm:block">
           {open ? 'Close chat' : 'Need skincare help?'}

@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
+import { Phone, Mail } from 'lucide-react';
 
 const galleryImages = [
   { id: 'oasis', src: 'https://res.cloudinary.com/dlifnml9x/image/upload/v1764140088/store-images/store_1764140088836_mxyxi528g.webp', alt: 'Calming wellness lounge' },
@@ -188,6 +189,47 @@ export default function Gallery() {
             ›
           </motion.button>
         </div>
+
+        <motion.div 
+          className="mt-6 xs:mt-8 sm:mt-10 md:mt-12 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+        >
+          <motion.h3 
+            className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-[#404040] mb-4 xs:mb-5 sm:mb-6"
+            variants={headerVariants}
+          >
+            Get in Touch
+          </motion.h3>
+          <motion.div 
+            className="flex flex-col xs:flex-row gap-8 xs:gap-10 sm:gap-12 justify-center items-center"
+            variants={containerVariants}
+          >
+            <motion.a
+              href="tel:+918005051055"
+              className="flex items-center gap-3 text-sm xs:text-base sm:text-lg text-[#404040] hover:text-[#C9A961] transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Phone className="h-5 w-5 xs:h-6 xs:w-6 flex-shrink-0 text-[#C9A961]" />
+              <span>+91 800-505-1055</span>
+            </motion.a>
+            <motion.div 
+              className="hidden xs:block w-px h-8 bg-[#C9A961]/30"
+            />
+            <motion.a
+              href="mailto:dermacharmaesthetics@gmail.com"
+              className="flex items-center gap-3 text-sm xs:text-base sm:text-lg text-[#404040] hover:text-[#C9A961] transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Mail className="h-5 w-5 xs:h-6 xs:w-6 flex-shrink-0 text-[#C9A961]" />
+              <span>dermacharmaesthetics@gmail.com</span>
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </motion.div>
     </section>
   );

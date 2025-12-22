@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, easeOut } from 'framer-motion';
+import { Sparkles, Zap, Wand2, Wind } from 'lucide-react';
 import Hero from '../components/Hero';
 import AboutSection from '../components/AboutSection';
 import TreatmentsSection from '../components/TreatmentsSection';
@@ -10,26 +11,31 @@ import FAQ from '../components/FAQ';
 
 const services = [
   {
-    title: 'Skin Therapy Studio',
-    description: 'Custom facials, HydraGlow rituals, and pigment-correcting programs for luminous skin.',
-    icon: '✨',
+    title: 'Advanced Skin Correction',
+    description:
+      'Targeted solutions for pigmentation, acne, scars, melasma, open pores, and dark circles using clinically proven treatments like peels, microneedling, PRP, and medi facials.',
+    icon: <Sparkles className="h-full w-full" />,
   },
   {
-    title: 'Hair Revive Lounge',
-    description: 'Scalp detox, PRP stimulation, and strengthening boosters that restore fuller strands.',
-    icon: '💆‍♀️',
+    title: 'Age Defense & Facial Sculpting',
+    description:
+      'Non-surgical rejuvenation and contouring with HIFU, PRP, RF microneedling, and IV therapies to restore firmness, refine jawlines, and enhance youthful radiance.',
+    icon: <Wand2 className="h-full w-full" />,
   },
   {
-    title: 'Laser Atelier',
-    description: 'Next-gen diode and Q-switch lasers for scar revision, hair reduction, and resurfacing.',
-    icon: '⚡',
+    title: 'Laser & Precision Aesthetics',
+    description:
+      'Advanced laser technologies for hair reduction, carbon facials, scar resurfacing, and precise skin tag or mole removal with minimal downtime and excellent cosmetic outcomes.',
+    icon: <Zap className="h-full w-full" />,
   },
   {
-    title: 'Aesthetic Artistry',
-    description: 'Injectables, contouring, and regenerative treatments that enhance natural harmony.',
-    icon: '🌸',
+    title: 'Hair & Scalp Regeneration',
+    description:
+      'Comprehensive solutions for hair fall, alopecia, dandruff, premature greying, and scalp disorders using PRP, GFC, mesotherapy, LED therapy, and medical scalp care.',
+    icon: <Wind className="h-full w-full" />,
   },
 ];
+
 
 const containerVariants = {
   hidden: { opacity: 0 },

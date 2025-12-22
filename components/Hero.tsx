@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type Slide = {
   id: string;
@@ -26,6 +26,14 @@ const textVariants = {
       delay: custom * 0.1,
     },
   }),
+  exit: (custom: number) => ({
+    opacity: 0,
+    y: -20,
+    transition: {
+      duration: 0.5,
+      delay: custom * 0.05,
+    },
+  }),
 };
 
 const highlightsVariants = {
@@ -35,6 +43,13 @@ const highlightsVariants = {
     transition: {
       staggerChildren: 0.1,
       delayChildren: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0,
     },
   },
 };
@@ -56,6 +71,14 @@ const metricsVariants = {
     transition: {
       duration: 0.6,
       delay: custom * 0.12,
+    },
+  }),
+  exit: (custom: number) => ({
+    opacity: 0,
+    y: -10,
+    transition: {
+      duration: 0.5,
+      delay: custom * 0.05,
     },
   }),
 };
@@ -147,11 +170,15 @@ export default function Hero() {
       >
         <div className="mx-auto max-w-7xl h-full flex flex-col justify-end">
           <div className="grid gap-3 xs:gap-4 sm:gap-6 lg:gap-8 lg:grid-cols-[1.1fr_0.9fr] flex-1">
-            <motion.div 
-              className="flex flex-col justify-between"
-              initial="hidden"
-              animate={showAnimation ? "visible" : "hidden"}
-            >
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={activeIndex}
+                className="flex flex-col justify-between"
+                initial="hidden"
+                animate={showAnimation ? "visible" : "hidden"}
+                exit="exit"
+                variants={textVariants}
+              >
               <div className="space-y-2 xs:space-y-3 sm:space-y-4">
                 <motion.p 
                   className="text-xs font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
@@ -258,23 +285,36 @@ export default function Hero() {
                   />
                 ))}
               </motion.div>
-            </motion.div>
-            <motion.div 
-              className="relative rounded-2xl xs:rounded-2xl sm:rounded-3xl border border-[#E8D5B5] overflow-hidden shadow-2xl shadow-[#D4C5B9]/50 mt-8 lg:mt-0 lg:h-[600px]"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={showAnimation ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <Image
-                key={activeSlide.id}
-                src={activeSlide.sideImage}
-                alt={`${activeSlide.focus} visual`}
-                fill
-                priority
-                className="object-cover transition-opacity duration-[1200ms] ease-out"
-              />
+              </motion.div>
+            </AnimatePresence>
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={activeIndex}
+                className="relative rounded-2xl xs:rounded-2xl sm:rounded-3xl border border-[#E8D5B5] overflow-hidden shadow-2xl shadow-[#D4C5B9]/50 mt-8 lg:mt-0 lg:h-[600px]"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={showAnimation ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0"
+              >
+                <Image
+                  key={activeSlide.id}
+                  src={activeSlide.sideImage}
+                  alt={`${activeSlide.focus} visual`}
+                  fill
+                  priority
+                  className="object-cover"
+                />
+              </motion.div>
               <div className="absolute inset-0 bg-gradient-to-t from-[#E8D5B5]/40 via-transparent to-transparent" />
-            </motion.div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
