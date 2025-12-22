@@ -4,83 +4,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { services } from '@/lib/data';
 
-const treatments = [
-  {
-    id: 'laser-atrium',
-    name: 'Laser Atrium Resurfacing',
-    image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=80',
-    shortDescription: 'Hybrid fractional resurfacing calibrates energy delivery to sculpt tone refinement and glass-skin clarity.',
-    description:
-      'Our laser atrium pairs dual-wavelength resurfacing with lymphatic cooling to soften etched lines, fade stubborn hyperpigmentation, and rebuild collagen density without disrupting barrier resilience.',
-    benefits: ['Precise pigment balancing', 'Collagen renewal boost', 'Minimal social downtime'],
-  },
-  {
-    id: 'cellular-studio',
-    name: 'Cellular Revival Studio',
-    image: 'https://images.unsplash.com/photo-1643684460412-76908d8e5a25?w=500&q=80',
-    shortDescription: 'PRF concentrates woven with LED photobiomodulation awaken dermal stem cells for resilient radiance.',
-    description:
-      'The revival studio sequence layers platelet-rich fibrin with oxygenated serums and multi-spectrum LED to energize cellular turnover, recalibrate hydration memory, and cushion stressed skin matrices.',
-    benefits: ['Amplified cellular turnover', 'Inflammation control', 'Deep hydration lock'],
-  },
-  {
-    id: 'scalp-lounge',
-    name: 'Scalp Renewal Lounge',
-    image: 'https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_930/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/xxvgvr4sruzccnzsgvhx/DamHyeWonScalpLoungeHapjeongKyoboBookStoreBranch%7CSeoul.jpg',
-    shortDescription: 'Detox exfoliation merges with growth-factor infusions reviving thinning roots and soothing imbalanced scalps.',
-    description:
-      'Micromist exfoliation, red-light modulation, and targeted mesotherapy wake dormant follicles while recalibrating microbiome harmony for fuller, denser strands.',
-    benefits: ['Enhanced follicle vitality', 'Balanced scalp microbiome', 'Stronger strand anchoring'],
-  },
-  {
-    id: 'derma-ritual',
-    name: 'Dermal Ritual Sculpt',
-    image: 'https://images.unsplash.com/photo-1643684391140-c5056cfd3436?w=500&q=80',
-    shortDescription: 'Skin mapping diagnostics choreograph contouring massage, gua sha lymphatics, and peptide infusion sequences.',
-    description:
-      'A multi-sensory ritual aligning fascia release, gua sha precision, and biomimetic peptides to detox stagnation, lift contours, and illuminate tone harmonies.',
-    benefits: ['Immediate sculpted lift', 'Improved lymphatic flow', 'Radiance amplification'],
-  },
-  {
-    id: 'aqua-firm',
-    name: 'Aqua Firm Infusion',
-    image: 'https://images.unsplash.com/photo-1531299204812-e6d44d9a185c?w=500&q=80',
-    shortDescription: 'Ultrasonic cleansing merges with oxygen domes and peptide chambers saturating dermal layers with active hydration.',
-    description:
-      'A cascade of ultrasonic extractions, oxygen therapy, and cryo-infusions locks hyaluronic micro-reservoirs into deeper layers to smooth texture and restore luminous bounce.',
-    benefits: ['Pore refinement', 'Hydration reservoirs filled', 'Smooth glassy finish'],
-  },
-  {
-    id: 'lumi-lift',
-    name: 'LumiLift Contour Lab',
-    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=80',
-    shortDescription: 'Microcurrent waveforms paired with buccal sculpting synchronize neuromuscular lift and fascia release.',
-    description:
-      'Alternating microcurrent frequencies and buccal massage activate muscle memory, release jaw tension, and refine cheek architecture for editorial-grade definition.',
-    benefits: ['Defined jawline', 'Relaxed facial tension', 'Longer-lasting lift'],
-  },
-  {
-    id: 'radiance-renewal',
-    name: 'Radiance Renewal Protocol',
-    image: 'https://images.unsplash.com/photo-1638712645318-f47cdfd4e45e?w=500&q=80',
-    shortDescription: 'Advanced radiofrequency microneedling stimulates collagen neogenesis and tightens skin architecture at multiple depths.',
-    description:
-      'This transformative protocol combines fractional radiofrequency with precision microneedling to remodel collagen scaffolding, erase textural imprints, and restore youthful elasticity across face, neck, and décolletage.',
-    benefits: ['Aggressive collagen remodeling', 'Profound skin tightening', 'Refined texture and pores'],
-  },
-  {
-    id: 'glow-enzyme',
-    name: 'Glow Enzyme Metamorphosis',
-    image: 'https://images.unsplash.com/photo-1599288894066-3df0c35efc28?w=500&q=80',
-    shortDescription: 'Multi-enzymatic peels dissolve dead cell layers while probiotics reseed skin microflora for luminous resilience.',
-    description:
-      'A catalyst treatment layering papaya, pumpkin, and bromelain enzymes with gentle yet effective exfoliation, balanced by prebiotic infusions to restore protective microbiome equilibrium and unveil translucent, glass-like radiance.',
-    benefits: ['Enzymatic deep exfoliation', 'Microbiome restoration', 'Luminous, glowing skin'],
-  },
-];
+const treatments = services
+  .filter((service) => service.featured === true)
+  .map((service) => ({
+    id: service.id,
+    name: service.title,
+    image: service.image,
+    shortDescription: service.description,
+    description: service.details,
+    benefits: service.recommendedProcedures,
+  }));
 
-const truncateCopy = (text: string) => (text.length > 120 ? `${text.slice(0, 118).trim()} (....)` : text);
+const truncateCopy = (text: string) => (text.length > 120 ? `${text.slice(0, 118).trim()}.....` : text);
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -125,8 +62,8 @@ export default function TreatmentsSection() {
   const [selectedTreatment, setSelectedTreatment] = useState<(typeof treatments)[number] | null>(null);
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-[#FAFAF8] to-[#F5F2EE] w-full px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-      <div className="mx-auto max-w-7xl">
+    <section className="min-h-screen bg-gradient-to-br from-[#FAFAF8] to-[#F5F2EE] w-full px-4 sm:px-6 lg:px-8 py-12 lg:py-16 overflow-visible">
+      <div className="mx-auto max-w-7xl overflow-visible">
         {/* Header */}
         <motion.div 
           className="text-center mb-16 lg:mb-20"
@@ -158,7 +95,7 @@ export default function TreatmentsSection() {
 
         {/* Treatments Grid */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 overflow-visible"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}

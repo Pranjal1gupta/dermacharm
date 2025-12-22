@@ -1,14 +1,11 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { services } from '@/lib/data';
+import * as Select from '@radix-ui/react-select';
+import { ChevronDown } from 'lucide-react';
 
-const treatmentTypes = [
-  'Skin Consultation',
-  'Hair Consultation',
-  'Laser Treatment',
-  'Aesthetic Consultation',
-  'General Inquiry',
-];
+const treatmentTypes = services.map(service => service.title);
 
 const timeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM'];
 
@@ -32,6 +29,69 @@ export default function BookPage() {
   };
 
   const minDate = new Date().toISOString().split('T')[0];
+
+  const handleWhatsAppBooking = () => {
+    const { name, email, phone, treatmentType, preferredDate, preferredTime, concerns } = formData;
+
+    if (!name || !email || !phone || !treatmentType || !preferredDate || !preferredTime) {
+      alert('Please fill in all required fields before confirming your booking.');
+      return;
+    }
+
+    const message = `*Dermacharma Clinic - Appointment Booking Request*
+
+*Personal Information:*
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+
+*Appointment Details:*
+Treatment Type: ${treatmentType}
+Preferred Date: ${preferredDate}
+Preferred Time: ${preferredTime}
+
+${concerns ? `*Concerns & Goals:*\n${concerns}` : ''}
+
+Please confirm my appointment booking. I look forward to my consultation.`;
+
+    const clinicPhoneNumber = '918005051055';
+    const whatsappUrl = `https://wa.me/${clinicPhoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleEmailBooking = () => {
+    const { name, email, phone, treatmentType, preferredDate, preferredTime, concerns } = formData;
+
+    if (!name || !email || !phone || !treatmentType || !preferredDate || !preferredTime) {
+      alert('Please fill in all required fields before confirming your booking.');
+      return;
+    }
+
+    const emailBody = `Dear Dermacharma Clinic,
+
+I would like to book an appointment with your clinic.
+
+PERSONAL INFORMATION:
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+
+APPOINTMENT DETAILS:
+Treatment Type: ${treatmentType}
+Preferred Date: ${preferredDate}
+Preferred Time: ${preferredTime}
+
+${concerns ? `CONCERNS & GOALS:\n${concerns}\n` : ''}
+Please confirm my appointment booking. I look forward to my consultation.
+
+Best regards,
+${name}`;
+
+    const clinicEmail = 'dermacharmaesthetics@gmail.com';
+    const subject = 'Appointment Booking Request - Dermacharma Clinic';
+    const mailtoUrl = `mailto:${clinicEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    window.location.href = mailtoUrl;
+  };
 
   return (
     <section className="bg-[#FAFAF8] w-full px-2 xs:px-3 sm:px-4 py-6 xs:py-8 sm:py-10 md:py-12">
@@ -97,23 +157,30 @@ export default function BookPage() {
               </div>
 
               <div>
-                <label htmlFor="book-treatment" className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#404040]">
+                <label className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#404040]">
                   Treatment Type *
                 </label>
-                <select
-                  id="book-treatment"
-                  required
-                  value={formData.treatmentType}
-                  onChange={(e) => setFormData({ ...formData, treatmentType: e.target.value })}
-                  className="mt-1.5 xs:mt-2 sm:mt-3 w-full rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-white px-3 xs:px-4 sm:px-4 py-2 xs:py-2.5 sm:py-3 text-xs sm:text-sm text-[#404040] outline-none transition focus:border-[#C9A961] focus:ring-2 focus:ring-[#C9A961]/40"
-                >
-                  <option value="">Select a treatment type</option>
-                  {treatmentTypes.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
+                <Select.Root value={formData.treatmentType} onValueChange={(value) => setFormData({ ...formData, treatmentType: value })}>
+                  <Select.Trigger className="mt-1.5 xs:mt-2 sm:mt-3 w-full rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-white px-3 xs:px-4 sm:px-4 py-2 xs:py-2.5 sm:py-3 text-xs sm:text-sm text-[#404040] outline-none transition focus:border-[#C9A961] focus:ring-2 focus:ring-[#C9A961]/40 flex items-center justify-between cursor-pointer" asChild>
+                    <button type="button">
+                      <Select.Value placeholder="Select a treatment type" />
+                      <Select.Icon asChild>
+                        <ChevronDown className="w-4 h-4 opacity-50" />
+                      </Select.Icon>
+                    </button>
+                  </Select.Trigger>
+                  <Select.Portal>
+                    <Select.Content className="overflow-hidden rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-white shadow-lg shadow-[#D4C5B9]/30 z-50">
+                      <Select.Viewport className="p-1">
+                        {treatmentTypes.map((type) => (
+                          <Select.Item key={type} value={type} className="px-3 xs:px-4 sm:px-4 py-2 xs:py-2.5 sm:py-3 text-xs sm:text-sm text-[#404040] cursor-pointer hover:bg-[#C9A961]/10 outline-none focus:bg-[#C9A961]/10">
+                            <Select.ItemText>{type}</Select.ItemText>
+                          </Select.Item>
+                        ))}
+                      </Select.Viewport>
+                    </Select.Content>
+                  </Select.Portal>
+                </Select.Root>
               </div>
             </div>
 
@@ -134,23 +201,30 @@ export default function BookPage() {
               </div>
 
               <div>
-                <label htmlFor="book-time" className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#404040]">
+                <label className="text-xs xs:text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#404040]">
                   Preferred Time *
                 </label>
-                <select
-                  id="book-time"
-                  required
-                  value={formData.preferredTime}
-                  onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
-                  className="mt-1.5 xs:mt-2 sm:mt-3 w-full rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-white px-3 xs:px-4 sm:px-4 py-2 xs:py-2.5 sm:py-3 text-xs sm:text-sm text-[#404040] outline-none transition focus:border-[#C9A961] focus:ring-2 focus:ring-[#C9A961]/40"
-                >
-                  <option value="">Select a time slot</option>
-                  {timeSlots.map((slot) => (
-                    <option key={slot} value={slot}>
-                      {slot}
-                    </option>
-                  ))}
-                </select>
+                <Select.Root value={formData.preferredTime} onValueChange={(value) => setFormData({ ...formData, preferredTime: value })}>
+                  <Select.Trigger className="mt-1.5 xs:mt-2 sm:mt-3 w-full rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-white px-3 xs:px-4 sm:px-4 py-2 xs:py-2.5 sm:py-3 text-xs sm:text-sm text-[#404040] outline-none transition focus:border-[#C9A961] focus:ring-2 focus:ring-[#C9A961]/40 flex items-center justify-between cursor-pointer" asChild>
+                    <button type="button">
+                      <Select.Value placeholder="Select a time slot" />
+                      <Select.Icon asChild>
+                        <ChevronDown className="w-4 h-4 opacity-50" />
+                      </Select.Icon>
+                    </button>
+                  </Select.Trigger>
+                  <Select.Portal>
+                    <Select.Content className="overflow-hidden rounded-lg xs:rounded-xl sm:rounded-2xl border border-[#C9A961]/40 bg-white shadow-lg shadow-[#D4C5B9]/30 z-50">
+                      <Select.Viewport className="p-1">
+                        {timeSlots.map((slot) => (
+                          <Select.Item key={slot} value={slot} className="px-3 xs:px-4 sm:px-4 py-2 xs:py-2.5 sm:py-3 text-xs sm:text-sm text-[#404040] cursor-pointer hover:bg-[#C9A961]/10 outline-none focus:bg-[#C9A961]/10">
+                            <Select.ItemText>{slot}</Select.ItemText>
+                          </Select.Item>
+                        ))}
+                      </Select.Viewport>
+                    </Select.Content>
+                  </Select.Portal>
+                </Select.Root>
               </div>
             </div>
 
@@ -168,13 +242,31 @@ export default function BookPage() {
               />
             </div>
 
-            <div className="space-y-3 xs:space-y-4 sm:space-y-5 pt-2 xs:pt-3 sm:pt-4 flex justify-center">
-              <button
-                type="submit"
-                className="group relative px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105 items-center "
-              >
-                Confirm Booking
-              </button>
+            <div className="space-y-3 xs:space-y-4 sm:space-y-5 pt-2 xs:pt-3 sm:pt-4 flex flex-col items-center">
+              <div className="flex flex-wrap gap-3 xs:gap-4 sm:gap-5 justify-center">
+                {/* <button
+                  type="submit"
+                  className="group relative px-6 xs:px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105"
+                >
+                  Confirm Booking
+                </button> */}
+
+                <button
+                  type="button"
+                  onClick={handleWhatsAppBooking}
+                  className="group relative px-6 xs:px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105"
+                >
+                  Confirm via WhatsApp
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleEmailBooking}
+                  className="group relative px-6 xs:px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105"
+                >
+                  Confirm via Email
+                </button>
+              </div>
 
               {submitted && (
                 <div className="rounded-lg xs:rounded-xl sm:rounded-2xl bg-[#E8DCC8] px-3 xs:px-4 sm:px-6 py-3 xs:py-4 sm:py-5 text-xs xs:text-xs sm:text-sm font-medium text-[#404040] text-center">
