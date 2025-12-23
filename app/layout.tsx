@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import ChatWidget from '../components/ChatWidget';
 import Topbar from '../components/Topbar';
 import Preloader from '../components/Preloader';
 
@@ -35,7 +34,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main className="flex flex-col flex-1">{children}</main>
           <Footer />
         </div>
-        <ChatWidget />
       </body>
     </html>
   );

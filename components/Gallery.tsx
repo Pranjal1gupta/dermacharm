@@ -48,6 +48,15 @@ const buttonVariants: Variants = {
 
 export default function Gallery() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -100,7 +109,6 @@ export default function Gallery() {
           <div className="relative w-full h-full">
             {galleryImages.map((img, index) => {
               const offset = (index - activeIndex + galleryImages.length) % galleryImages.length;
-              const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
               let translateX = 0;
               let rotateY = 0;
@@ -191,41 +199,41 @@ export default function Gallery() {
         </div>
 
         <motion.div 
-          className="mt-6 xs:mt-8 sm:mt-10 md:mt-12 text-center"
+          className="mt-6 xs:mt-16 sm:mt-10 md:mt-12 text-center px-4 xs:px-6 sm:px-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={containerVariants}
         >
           <motion.h3 
-            className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-[#404040] mb-4 xs:mb-5 sm:mb-6"
+            className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-[#404040] mb-8 xs:mb-8 sm:mb-10 md:mb-12"
             variants={headerVariants}
           >
             Get in Touch
           </motion.h3>
           <motion.div 
-            className="flex flex-col xs:flex-row gap-8 xs:gap-10 sm:gap-12 justify-center items-center"
+            className="flex flex-col xs:flex-row gap-6 xs:gap-8 sm:gap-10 md:gap-12 justify-center items-center"
             variants={containerVariants}
           >
             <motion.a
               href="tel:+918005051055"
-              className="flex items-center gap-3 text-sm xs:text-base sm:text-lg text-[#404040] hover:text-[#C9A961] transition-colors duration-300"
+              className="flex items-center gap-2 xs:gap-3 text-sm sm:text-base md:text-lg text-[#404040] hover:text-[#C9A961] transition-colors duration-300 whitespace-nowrap"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Phone className="h-5 w-5 xs:h-6 xs:w-6 flex-shrink-0 text-[#C9A961]" />
+              <Phone className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 flex-shrink-0 text-[#C9A961]" />
               <span>+91 800-505-1055</span>
             </motion.a>
             <motion.div 
-              className="hidden xs:block w-px h-8 bg-[#C9A961]/30"
+              className="w-full xs:w-px h-px xs:h-8 bg-[#C9A961]/30"
             />
             <motion.a
               href="mailto:dermacharmaesthetics@gmail.com"
-              className="flex items-center gap-3 text-sm xs:text-base sm:text-lg text-[#404040] hover:text-[#C9A961] transition-colors duration-300"
+              className="flex items-center gap-2 xs:gap-3 text-sm sm:text-base md:text-lg text-[#404040] hover:text-[#C9A961] transition-colors duration-300 whitespace-nowrap"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Mail className="h-5 w-5 xs:h-6 xs:w-6 flex-shrink-0 text-[#C9A961]" />
+              <Mail className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 flex-shrink-0 text-[#C9A961]" />
               <span>dermacharmaesthetics@gmail.com</span>
             </motion.a>
           </motion.div>

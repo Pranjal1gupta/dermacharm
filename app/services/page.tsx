@@ -86,7 +86,7 @@ export default function ServicesPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1, duration: 0.5 }}
           >
-            Our Services
+            Our treatments
           </motion.p>
           <motion.h1 
             className="mt-2 xs:mt-3 sm:mt-4 text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-[#404040]"

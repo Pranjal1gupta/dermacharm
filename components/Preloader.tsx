@@ -8,27 +8,39 @@ export default function Preloader() {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    const htmlElement = document.documentElement;
+    const bodyElement = document.body;
+    
+    htmlElement.style.overflow = 'hidden';
+    bodyElement.style.overflow = 'hidden';
+    
     const timer = setTimeout(() => {
       setIsVisible(false);
+      htmlElement.style.overflow = '';
+      bodyElement.style.overflow = '';
     }, 1500);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      htmlElement.style.overflow = '';
+      bodyElement.style.overflow = '';
+    };
   }, []);
 
   if (!isVisible) return null;
 
   return (
     <motion.div
-      className="fixed inset-0 flex items-center justify-center bg-gradient-to-b from-white via-white to-[#CDBBA7]/20 z-[9999]"
+      className="fixed inset-0 flex items-center justify-center bg-gradient-to-b from-white via-white to-[#CDBBA7]/20 z-[9999] overflow-hidden"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex flex-col items-center justify-center gap-4 xs:gap-5 sm:gap-6 px-4">
+      <div className="flex flex-col items-center justify-center gap-6 px-4 max-w-sm">
         <motion.div
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="relative"
+          className="relative h-16 flex items-center justify-center w-full"
         >
           <Image
             src="/logo.png"
@@ -36,12 +48,12 @@ export default function Preloader() {
             width={200}
             height={60}
             priority
-            className="h-auto w-36 xs:w-40 sm:w-48 drop-shadow-lg"
+            className="h-auto w-40 drop-shadow-lg"
           />
         </motion.div>
 
         <motion.div
-          className="flex gap-1.5 xs:gap-2 sm:gap-3"
+          className="flex gap-2 h-6 items-center justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
@@ -49,8 +61,8 @@ export default function Preloader() {
           {[0, 1, 2].map((i) => (
             <motion.div
               key={i}
-              className="h-2 xs:h-2.5 sm:h-3 w-2 xs:w-2.5 sm:w-3 rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8]"
-              animate={{ y: [0, -8, 0] }}
+              className="h-3 w-3 rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8]"
+              animate={{ y: [0, -6, 0] }}
               transition={{
                 duration: 0.8,
                 repeat: Infinity,
@@ -61,7 +73,7 @@ export default function Preloader() {
         </motion.div>
 
         <motion.p
-          className="text-[#C9A961] text-xs xs:text-sm sm:text-base font-light tracking-widest uppercase"
+          className="text-[#C9A961] text-sm font-light tracking-widest uppercase h-6 flex items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}

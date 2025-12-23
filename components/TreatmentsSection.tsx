@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { services } from '@/lib/data';
 
@@ -60,6 +60,17 @@ const modalVariants = {
 
 export default function TreatmentsSection() {
   const [selectedTreatment, setSelectedTreatment] = useState<(typeof treatments)[number] | null>(null);
+
+  useEffect(() => {
+    if (selectedTreatment) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedTreatment]);
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-[#FAFAF8] to-[#F5F2EE] w-full px-4 sm:px-6 lg:px-8 py-12 lg:py-16 overflow-visible">
@@ -159,14 +170,14 @@ export default function TreatmentsSection() {
       <AnimatePresence>
         {selectedTreatment && (
           <motion.div 
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#404040]/80 backdrop-blur-sm p-4" 
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[#404040]/80 backdrop-blur-sm p-4 overflow-hidden" 
             onClick={() => setSelectedTreatment(null)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div 
-              className="relative w-full max-w-4xl rounded-3xl border-2 border-[#C9A961]/30 bg-white/95 backdrop-blur-xl shadow-3xl shadow-[#D4C5B9]/40"
+              className="relative w-full max-w-4xl rounded-3xl border-2 border-[#C9A961]/30 bg-white/95 backdrop-blur-xl shadow-3xl shadow-[#D4C5B9]/40 max-h-[85vh] flex flex-col overscroll-contain"
               onClick={(e) => e.stopPropagation()}
               variants={modalVariants}
               initial="hidden"
@@ -182,7 +193,7 @@ export default function TreatmentsSection() {
               ✕
             </button>
 
-            <div className="p-6 lg:p-8 max-h-[85vh] overflow-y-auto">
+            <div className="p-6 lg:p-8 overflow-y-auto flex-1">
               <div className="grid lg:grid-cols-[1.2fr_1fr] gap-6 lg:gap-12 items-start">
                 {/* Image */}
                 <div className="relative h-72 lg:h-96 rounded-3xl overflow-hidden bg-gradient-to-br from-[#FAFAF8] to-[#F0EDE8] group flex-shrink-0 shadow-2xl shadow-[#D4C5B9]/20 border border-[#C9A961]/20">
@@ -214,11 +225,13 @@ export default function TreatmentsSection() {
                       </li>
                     ))}
                   </ul>
-
-                  <button className="w-full lg:w-auto group relative px-6 lg:px-10 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-xs lg:text-sm overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300">
-                    <span className="relative z-10">Book Consultation</span>
-                    <div className="absolute inset-0 bg-white/20 -skew-x-12 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                  </button>
+                  
+                  <Link href="/book" className="block w-full lg:w-auto">
+                    <button className="w-full lg:w-auto group relative px-6 lg:px-10 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-xs lg:text-sm overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300">
+                      <span className="relative z-10">Book Consultation</span>
+                      <div className="absolute inset-0 bg-white/20 -skew-x-12 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
