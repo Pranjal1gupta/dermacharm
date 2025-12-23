@@ -21,11 +21,11 @@ const primaryLinks = [
 ];
 
 const treatmentLinks = [
-  { href: '/treatments/skin', label: 'Skin Treatments' },
-  { href: '/treatments/hair', label: 'Hair Treatment' },
-  { href: '/treatments/aesthetic', label: 'Aesthetic Treatment' },
-  { href: '/treatments/laser', label: 'Laser Treatment' },
-  { href: '/treatments/dermatosurgery', label: 'Dermatosurgery' },
+  { href: '/treatments/skin/hyperpigmentation', label: 'Hyperpigmentation Treatments' },
+  { href: '/treatments/skin/acne', label: 'Acne & Pimples Treatment' },
+  { href: '/treatments/skin/double-chin', label: 'Double Chin Reduction' },
+  { href: '/treatments/hair/hair-fall', label: 'Hair Fall & Balding Treatment' },
+  { href: '/treatments/hair/dandruff', label: 'Dandruff Treatment' },
 ];
 
 const navGroups = [

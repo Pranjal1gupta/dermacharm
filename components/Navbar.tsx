@@ -83,11 +83,53 @@ export default function Navbar() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   return (
     <nav className="border-b border-[#C9A961]/30 bg-white/95 backdrop-blur-xl shadow-md shadow-[#D4C5B9]/20 sticky top-0 z-40">
       <div className="w-full px-2 xs:px-3 sm:px-4 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between h-12 xs:h-14 sm:h-16">
+            <button
+              type="button"
+              className="md:hidden inline-flex h-8 xs:h-9 w-8 xs:w-9 items-center justify-center rounded-full border border-[#C9A961]/40 text-[#404040] shadow-sm hover:text-[#C9A961] transition"
+              onClick={() => setMenuOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+            >
+              <span className="sr-only">Toggle navigation</span>
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  d={
+                    menuOpen
+                      ? "M6 6l12 12M6 18L18 6"
+                      : "M4 6h16M4 12h16M4 18h16"
+                  }
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+
             <motion.div
               className="hidden md:flex flex-1 items-center space-x-2 lg:space-x-6 text-xs sm:text-sm font-medium text-[#404040]"
               variants={containerVariants}
@@ -230,33 +272,6 @@ export default function Navbar() {
                 </Link>
               </motion.div>
             </motion.div>
-
-            <button
-              type="button"
-              className="md:hidden inline-flex h-8 xs:h-9 w-8 xs:w-9 items-center justify-center rounded-full border border-[#C9A961]/40 text-[#404040] shadow-sm hover:text-[#C9A961] transition"
-              onClick={() => setMenuOpen((prev) => !prev)}
-              aria-label="Toggle menu"
-              aria-expanded={menuOpen}
-            >
-              <span className="sr-only">Toggle navigation</span>
-              <svg
-                className="h-4 w-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  d={
-                    menuOpen
-                      ? "M6 6l12 12M6 18L18 6"
-                      : "M4 6h16M4 12h16M4 18h16"
-                  }
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
           </div>
         </div>
       </div>
