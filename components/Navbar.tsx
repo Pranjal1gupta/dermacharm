@@ -347,10 +347,14 @@ export default function Navbar() {
                 <motion.div
                   className="rounded-lg border border-[#C9A961]/40 bg-[#FAFAF8] px-4 py-3 xs:py-4"
                   variants={linkVariants}
+                  style={{ pointerEvents: "auto" }}
                 >
                   <button
                     type="button"
-                    onClick={() => toggleSection("skin")}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSection("skin");
+                    }}
                     className="w-full flex items-center justify-between hover:text-[#C9A961] transition"
                   >
                     <p className="text-xs font-semibold uppercase tracking-widest text-[#C9A961]">
@@ -401,10 +405,14 @@ export default function Navbar() {
                 <motion.div
                   className="rounded-lg border border-[#C9A961]/40 bg-[#FAFAF8] px-4 py-3 xs:py-4"
                   variants={linkVariants}
+                  style={{ pointerEvents: "auto" }}
                 >
                   <button
                     type="button"
-                    onClick={() => toggleSection("hair")}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSection("hair");
+                    }}
                     className="w-full flex items-center justify-between hover:text-[#C9A961] transition"
                   >
                     <p className="text-xs font-semibold uppercase tracking-widest text-[#C9A961]">
