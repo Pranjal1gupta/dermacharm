@@ -288,7 +288,7 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
-              className="md:hidden fixed left-0 top-0 h-screen w-72 xs:w-80 overflow-y-auto bg-white shadow-2xl shadow-[#D4C5B9]/30 z-40"
+              className="md:hidden fixed left-0 top-0 h-screen w-72 xs:w-80 bg-white shadow-2xl shadow-[#D4C5B9]/30 z-40 flex flex-col"
               variants={sidebarVariants}
               initial="hidden"
               animate="visible"
@@ -325,7 +325,7 @@ export default function Navbar() {
               </div>
 
               <motion.div
-                className="flex flex-col space-y-1 px-3 py-4 xs:py-5 text-[#404040]"
+                className="flex-1 overflow-y-auto flex flex-col space-y-1 px-3 py-4 xs:py-5 text-[#404040]"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
@@ -451,17 +451,17 @@ export default function Navbar() {
                     )}
                   </AnimatePresence>
                 </motion.div>
-
-                <motion.div variants={linkVariants}>
-                  <Link
-                    href="/book"
-                    className="rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] px-4 py-3 xs:py-3.5 text-center text-white shadow-lg shadow-[#C9A961]/40 text-xs xs:text-sm font-medium transition hover:shadow-xl mt-3 xs:mt-4 block animate-bounce"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Book Visit
-                  </Link>
-                </motion.div>
               </motion.div>
+
+              <div className="border-t border-[#C9A961]/20 px-3 py-4 xs:py-5 bg-white">
+                <Link
+                  href="/book"
+                  className="rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] px-4 py-3 xs:py-3.5 text-center text-white shadow-lg shadow-[#C9A961]/40 text-xs xs:text-sm font-medium transition hover:shadow-xl block animate-bounce"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Book Visit
+                </Link>
+              </div>
             </motion.div>
           </>
         )}
