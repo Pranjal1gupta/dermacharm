@@ -294,7 +294,7 @@ export default function Navbar() {
               animate="visible"
               exit="exit"
             >
-              <div className="flex items-center justify-between border-b border-[#C9A961]/20 px-4 py-4 xs:py-5">
+              <div className="flex items-center justify-between border-b border-[#C9A961]/20 px-4 py-4 xs:py-5 flex-shrink-0">
                 <Image
                   src="/logo.png"
                   alt="Dermacharm"
@@ -325,7 +325,7 @@ export default function Navbar() {
               </div>
 
               <motion.div
-                className="flex-1 overflow-y-auto flex flex-col space-y-1 px-3 py-4 xs:py-5 text-[#404040]"
+                className="flex-1 min-h-0 overflow-y-auto flex flex-col space-y-1 px-3 py-4 xs:py-5 text-[#404040]"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
@@ -453,10 +453,10 @@ export default function Navbar() {
                 </motion.div>
               </motion.div>
 
-              <div className="border-t border-[#C9A961]/20 px-3 py-4 xs:py-5 bg-white">
+              <div className="border-t border-[#C9A961]/20 px-3 py-4 xs:py-5 bg-white flex-shrink-0">
                 <Link
                   href="/book"
-                  className="rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] px-4 py-3 xs:py-3.5 text-center text-white shadow-lg shadow-[#C9A961]/40 text-xs xs:text-sm font-medium transition hover:shadow-xl block animate-bounce"
+                  className="rounded-full bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] px-4 py-3 xs:py-3.5 text-center text-white shadow-lg shadow-[#C9A961]/40 text-xs xs:text-sm font-medium transition hover:shadow-xl block animate-bounce w-full"
                   onClick={() => setMenuOpen(false)}
                 >
                   Book Visit
