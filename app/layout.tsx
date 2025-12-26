@@ -27,11 +27,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`${inter.className} bg-gradient-to-b from-[#E9F5F3] via-[#FFFFFF] to-[#CDBBA7]/40 text-[#2A3D45] antialiased`}>
         <Preloader />
         <div className="relative min-h-screen flex flex-col">
-          <header className="sticky top-0 z-40">
+          <header className="fixed top-0 left-0 right-0 z-50 w-full">
             <Topbar />
             <Navbar />
           </header>
-          <main className="flex flex-col flex-1">{children}</main>
+          <main className="flex flex-col flex-1 pt-16 xs:pt-[72px] sm:pt-[88px]">{children}</main>
           <Footer />
         </div>
       </body>

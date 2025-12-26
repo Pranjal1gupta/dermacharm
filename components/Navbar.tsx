@@ -99,7 +99,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <nav className="border-b border-[#C9A961]/30 bg-white/95 backdrop-blur-xl shadow-md shadow-[#D4C5B9]/20 sticky top-0 z-40">
+    <nav className="border-b border-[#C9A961]/30 bg-white/95 backdrop-blur-xl shadow-md shadow-[#D4C5B9]/20">
       <div className="w-full px-2 xs:px-3 sm:px-4 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between h-12 xs:h-14 sm:h-16">
@@ -288,7 +288,7 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
-              className="md:hidden fixed left-0 top-0 h-screen w-72 xs:w-80 bg-white shadow-2xl shadow-[#D4C5B9]/30 z-40 flex flex-col"
+              className="md:hidden fixed left-0 top-16 xs:top-[72px] sm:top-[88px] h-[calc(100vh-64px)] xs:h-[calc(100vh-72px)] sm:h-[calc(100vh-88px)] w-72 xs:w-80 bg-white shadow-2xl shadow-[#D4C5B9]/30 z-40 flex flex-col"
               variants={sidebarVariants}
               initial="hidden"
               animate="visible"
