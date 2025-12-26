@@ -198,7 +198,7 @@ export default function Gallery() {
           </motion.button>
         </div>
 
-        <motion.div 
+        {/* <motion.div 
           className="mt-6 xs:mt-16 sm:mt-10 md:mt-12 text-center px-4 xs:px-6 sm:px-8"
           initial="hidden"
           whileInView="visible"
@@ -212,7 +212,7 @@ export default function Gallery() {
             Get in Touch
           </motion.h3>
           <motion.div 
-            className="flex flex-col xs:flex-row gap-6 xs:gap-8 sm:gap-10 md:gap-12 justify-center items-center"
+            className="flex flex-col xs:flex-row xs:gap-8 sm:gap-10 md:gap-12 gap-4 justify-center items-center"
             variants={containerVariants}
           >
             <motion.a
@@ -225,7 +225,7 @@ export default function Gallery() {
               <span>+91 800-505-1055</span>
             </motion.a>
             <motion.div 
-              className="w-full xs:w-px h-px xs:h-8 bg-[#C9A961]/30"
+              className="hidden xs:block w-px h-8 bg-[#C9A961]/30"
             />
             <motion.a
               href="mailto:dermacharmaesthetics@gmail.com"
@@ -237,7 +237,7 @@ export default function Gallery() {
               <span>dermacharmaesthetics@gmail.com</span>
             </motion.a>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </section>
   );
