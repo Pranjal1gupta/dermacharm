@@ -288,7 +288,7 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
-              className="md:hidden fixed left-0 top-16 xs:top-[72px] sm:top-[88px] h-[calc(100vh-64px)] xs:h-[calc(100vh-72px)] sm:h-[calc(100vh-88px)] w-72 xs:w-80 bg-white shadow-2xl shadow-[#D4C5B9]/30 z-40 flex flex-col"
+              className="md:hidden fixed left-0 top-0 h-screen w-56 xs:w-64 bg-white shadow-2xl shadow-[#D4C5B9]/30 z-40 flex flex-col overflow-y-auto"
               variants={sidebarVariants}
               initial="hidden"
               animate="visible"

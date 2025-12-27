@@ -8,22 +8,23 @@ export default function Preloader() {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const htmlElement = document.documentElement;
-    const bodyElement = document.body;
+    // const htmlElement = document.documentElement;
+    // const bodyElement = document.body;
     
-    htmlElement.style.overflow = 'hidden';
-    bodyElement.style.overflow = 'hidden';
+    // htmlElement.style.overflow = 'hidden';
+    // htmlElement.style.scrollbarGutter = 'stable';
+    // bodyElement.style.overflow = 'hidden';
     
     const timer = setTimeout(() => {
       setIsVisible(false);
-      htmlElement.style.overflow = '';
-      bodyElement.style.overflow = '';
+      // htmlElement.style.overflow = '';
+      // bodyElement.style.overflow = '';
     }, 1500);
 
     return () => {
       clearTimeout(timer);
-      htmlElement.style.overflow = '';
-      bodyElement.style.overflow = '';
+      // htmlElement.style.overflow = '';
+      // bodyElement.style.overflow = '';
     };
   }, []);
 
@@ -31,7 +32,17 @@ export default function Preloader() {
 
   return (
     <motion.div
-      className="fixed inset-0 flex items-center justify-center bg-gradient-to-b from-white via-white to-[#CDBBA7]/20 z-[9999] overflow-hidden"
+      className="fixed inset-0 bg-gradient-to-b from-white via-white to-[#CDBBA7]/20 z-[9999] overflow-hidden"
+      style={{ 
+        top: 0, 
+        left: 0, 
+        right: 0, 
+        bottom: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        willChange: 'opacity'
+      }}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
