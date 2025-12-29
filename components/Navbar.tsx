@@ -64,12 +64,13 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
   const [expandedSections, setExpandedSections] = useState<{
+    treatments: boolean;
     skin: boolean;
     hair: boolean;
     mediFacials: boolean;
-  }>({ skin: false, hair: false, mediFacials: false });
+  }>({ treatments: false, skin: false, hair: false, mediFacials: false });
 
-  const toggleSection = (section: "skin" | "hair" | "mediFacials") => {
+  const toggleSection = (section: "treatments" | "skin" | "hair" | "mediFacials") => {
     setExpandedSections((prev) => ({
       ...prev,
       [section]: !prev[section],
@@ -189,7 +190,7 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  Skin Treatments
+                  Treatments
                   <svg
                     className="h-3 xs:h-3.5 lg:h-4 w-3 xs:w-3.5 lg:w-4"
                     viewBox="0 0 24 24"
@@ -204,102 +205,125 @@ export default function Navbar() {
                     />
                   </svg>
                 </button>
-                <div className="absolute right-0 top-full pt-2 xs:pt-3 w-44 xs:w-52 lg:w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition pointer-events-none group-hover:pointer-events-auto">
+                <div className="absolute right-0 top-full pt-2 xs:pt-3 w-48 xs:w-56 lg:w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition pointer-events-none group-hover:pointer-events-auto">
                   <div className="rounded-lg lg:rounded-2xl border border-[#C9A961]/40 bg-white/95 p-2 lg:p-3 text-[#404040] shadow-xl shadow-[#D4C5B9]/30 text-xs lg:text-sm">
-                    <div className="flex flex-col gap-1">
-                      {services
-                        .filter((s) => s.category === "Skin")
-                        .map((option) => (
-                          <Link
-                            key={option.id}
-                            href={option.link}
-                            className="rounded-lg px-2 xs:px-3 py-1 xs:py-1.5 lg:py-2 text-xs lg:text-sm font-medium transition hover:bg-[#E8DCC8]/40 hover:text-[#C9A961]"
+                    <div className="flex flex-col gap-2">
+                      <div className="relative group/skin">
+                        <button
+                          type="button"
+                          className="w-full flex items-center justify-between rounded-lg px-2 xs:px-3 py-1 xs:py-1.5 lg:py-2 text-xs lg:text-sm font-medium transition hover:bg-[#E8DCC8]/40 hover:text-[#C9A961]"
+                        >
+                          <span>Skin Treatments</span>
+                          <svg
+                            className="h-3 w-3"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
                           >
-                            {option.title}
-                          </Link>
-                        ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+                            <path
+                              d="m9 6 6 6-6 6"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </button>
+                        <div className="absolute right-full top-0 pt-0 pr-1 xs:pr-2 opacity-0 invisible group-hover/skin:opacity-100 group-hover/skin:visible transition pointer-events-none group-hover/skin:pointer-events-auto">
+                          <div className="rounded-lg lg:rounded-2xl border border-[#C9A961]/40 bg-white/95 p-2 lg:p-3 text-[#404040] shadow-xl shadow-[#D4C5B9]/30 text-xs lg:text-sm whitespace-nowrap">
+                            <div className="flex flex-col gap-1">
+                              {services
+                                .filter((s) => s.category === "Skin")
+                                .map((option) => (
+                                  <Link
+                                    key={option.id}
+                                    href={option.link}
+                                    className="rounded-lg px-2 xs:px-3 py-1 xs:py-1.5 lg:py-2 text-xs lg:text-sm font-medium transition hover:bg-[#E8DCC8]/40 hover:text-[#C9A961]"
+                                  >
+                                    {option.title}
+                                  </Link>
+                                ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-              <div className="relative group">
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 rounded-full px-2 lg:px-3 py-1 xs:py-1.5 text-[#404040] transition hover:text-[#C9A961] text-xs lg:text-sm"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Hair Treatments
-                  <svg
-                    className="h-3 xs:h-3.5 lg:h-4 w-3 xs:w-3.5 lg:w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      d="m6 9 6 6 6-6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-                <div className="absolute right-0 top-full pt-2 xs:pt-3 w-44 xs:w-52 lg:w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition pointer-events-none group-hover:pointer-events-auto">
-                  <div className="rounded-lg lg:rounded-2xl border border-[#C9A961]/40 bg-white/95 p-2 lg:p-3 text-[#404040] shadow-xl shadow-[#D4C5B9]/30 text-xs lg:text-sm">
-                    <div className="flex flex-col gap-1">
-                      {services
-                        .filter((s) => s.category === "Hair")
-                        .map((option) => (
-                          <Link
-                            key={option.id}
-                            href={option.link}
-                            className="rounded-lg px-2 xs:px-3 py-1 xs:py-1.5 lg:py-2 text-xs lg:text-sm font-medium transition hover:bg-[#E8DCC8]/40 hover:text-[#C9A961]"
+                      <div className="relative group/hair">
+                        <button
+                          type="button"
+                          className="w-full flex items-center justify-between rounded-lg px-2 xs:px-3 py-1 xs:py-1.5 lg:py-2 text-xs lg:text-sm font-medium transition hover:bg-[#E8DCC8]/40 hover:text-[#C9A961]"
+                        >
+                          <span>Hair Treatments</span>
+                          <svg
+                            className="h-3 w-3"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
                           >
-                            {option.title}
-                          </Link>
-                        ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+                            <path
+                              d="m9 6 6 6-6 6"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </button>
+                        <div className="absolute right-full top-0 pt-0 pr-1 xs:pr-2 opacity-0 invisible group-hover/hair:opacity-100 group-hover/hair:visible transition pointer-events-none group-hover/hair:pointer-events-auto">
+                          <div className="rounded-lg lg:rounded-2xl border border-[#C9A961]/40 bg-white/95 p-2 lg:p-3 text-[#404040] shadow-xl shadow-[#D4C5B9]/30 text-xs lg:text-sm whitespace-nowrap">
+                            <div className="flex flex-col gap-1">
+                              {services
+                                .filter((s) => s.category === "Hair")
+                                .map((option) => (
+                                  <Link
+                                    key={option.id}
+                                    href={option.link}
+                                    className="rounded-lg px-2 xs:px-3 py-1 xs:py-1.5 lg:py-2 text-xs lg:text-sm font-medium transition hover:bg-[#E8DCC8]/40 hover:text-[#C9A961]"
+                                  >
+                                    {option.title}
+                                  </Link>
+                                ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-              <div className="relative group">
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 rounded-full px-2 lg:px-3 py-1 xs:py-1.5 text-[#404040] transition hover:text-[#C9A961] text-xs lg:text-sm"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Medi Facials
-                  <svg
-                    className="h-3 xs:h-3.5 lg:h-4 w-3 xs:w-3.5 lg:w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      d="m6 9 6 6 6-6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-                <div className="absolute right-0 top-full pt-2 xs:pt-3 w-44 xs:w-52 lg:w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition pointer-events-none group-hover:pointer-events-auto">
-                  <div className="rounded-lg lg:rounded-2xl border border-[#C9A961]/40 bg-white/95 p-2 lg:p-3 text-[#404040] shadow-xl shadow-[#D4C5B9]/30 text-xs lg:text-sm">
-                    <div className="flex flex-col gap-1">
-                      {services
-                        .filter((s) => s.category === "Medi Facials")
-                        .map((option) => (
-                          <Link
-                            key={option.id}
-                            href={option.link}
-                            className="rounded-lg px-2 xs:px-3 py-1 xs:py-1.5 lg:py-2 text-xs lg:text-sm font-medium transition hover:bg-[#E8DCC8]/40 hover:text-[#C9A961]"
+                      <div className="relative group/medi">
+                        <button
+                          type="button"
+                          className="w-full flex items-center justify-between rounded-lg px-2 xs:px-3 py-1 xs:py-1.5 lg:py-2 text-xs lg:text-sm font-medium transition hover:bg-[#E8DCC8]/40 hover:text-[#C9A961]"
+                        >
+                          <span>Medi Facials</span>
+                          <svg
+                            className="h-3 w-3"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
                           >
-                            {option.title}
-                          </Link>
-                        ))}
+                            <path
+                              d="m9 6 6 6-6 6"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </button>
+                        <div className="absolute right-full top-0 pt-0 pr-1 xs:pr-2 opacity-0 invisible group-hover/medi:opacity-100 group-hover/medi:visible transition pointer-events-none group-hover/medi:pointer-events-auto">
+                          <div className="rounded-lg lg:rounded-2xl border border-[#C9A961]/40 bg-white/95 p-2 lg:p-3 text-[#404040] shadow-xl shadow-[#D4C5B9]/30 text-xs lg:text-sm whitespace-nowrap">
+                            <div className="flex flex-col gap-1">
+                              {services
+                                .filter((s) => s.category === "Medi Facials")
+                                .map((option) => (
+                                  <Link
+                                    key={option.id}
+                                    href={option.link}
+                                    className="rounded-lg px-2 xs:px-3 py-1 xs:py-1.5 lg:py-2 text-xs lg:text-sm font-medium transition hover:bg-[#E8DCC8]/40 hover:text-[#C9A961]"
+                                  >
+                                    {option.title}
+                                  </Link>
+                                ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -372,7 +396,7 @@ export default function Navbar() {
                 initial="hidden"
                 animate="visible"
               >
-                {primaryLinks.map((link) => (
+                {primaryLinks.filter((link) => link.label !== "Treatments").map((link) => (
                   <motion.div key={link.href} variants={linkVariants}>
                     <Link
                       href={link.href}
@@ -395,16 +419,16 @@ export default function Navbar() {
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      toggleSection("skin");
+                      toggleSection("treatments");
                     }}
                     className="w-full flex items-center justify-between hover:text-[#C9A961] transition"
                   >
                     <p className="text-xs font-semibold uppercase tracking-widest text-[#C9A961]">
-                      Skin Treatments
+                      Treatments
                     </p>
                     <svg
                       className={`h-4 w-4 transition-transform ${
-                        expandedSections.skin ? "rotate-180" : ""
+                        expandedSections.treatments ? "rotate-180" : ""
                       }`}
                       viewBox="0 0 24 24"
                       fill="none"
@@ -419,142 +443,169 @@ export default function Navbar() {
                     </svg>
                   </button>
                   <AnimatePresence>
-                    {expandedSections.skin && (
+                    {expandedSections.treatments && (
                       <motion.div
-                        className="flex flex-col space-y-1 mt-2"
+                        className="flex flex-col space-y-2 mt-3"
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.2 }}
                       >
-                        {services
-                          .filter((s) => s.category === "Skin")
-                          .map((option) => (
-                            <Link
-                              key={option.id}
-                              href={option.link}
-                              className="rounded-lg px-3 py-2 text-xs xs:text-sm font-medium hover:bg-[#E8DCC8]/40 hover:text-[#C9A961] transition block"
-                              onClick={() => setMenuOpen(false)}
+                        <div>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSection("skin");
+                            }}
+                            className="w-full flex items-center justify-between rounded-lg px-3 py-2 text-xs xs:text-sm font-medium hover:bg-[#E8DCC8]/40 hover:text-[#C9A961] transition"
+                          >
+                            <span>Skin Treatments</span>
+                            <svg
+                              className={`h-3 w-3 transition-transform ${
+                                expandedSections.skin ? "rotate-180" : ""
+                              }`}
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
                             >
-                              {option.title}
-                            </Link>
-                          ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                              <path
+                                d="m6 9 6 6 6-6"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </button>
+                          <AnimatePresence>
+                            {expandedSections.skin && (
+                              <motion.div
+                                className="flex flex-col space-y-1 mt-1"
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                {services
+                                  .filter((s) => s.category === "Skin")
+                                  .map((option) => (
+                                    <Link
+                                      key={option.id}
+                                      href={option.link}
+                                      className="rounded-lg px-3 py-1.5 text-xs xs:text-sm font-medium hover:bg-[#E8DCC8]/40 hover:text-[#C9A961] transition block"
+                                      onClick={() => setMenuOpen(false)}
+                                    >
+                                      {option.title}
+                                    </Link>
+                                  ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
 
-                <motion.div
-                  className="rounded-lg border border-[#C9A961]/40 bg-[#FAFAF8] px-4 py-3 xs:py-4"
-                  variants={linkVariants}
-                  style={{ pointerEvents: "auto" }}
-                >
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleSection("hair");
-                    }}
-                    className="w-full flex items-center justify-between hover:text-[#C9A961] transition"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-widest text-[#C9A961]">
-                      Hair Treatments
-                    </p>
-                    <svg
-                      className={`h-4 w-4 transition-transform ${
-                        expandedSections.hair ? "rotate-180" : ""
-                      }`}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        d="m6 9 6 6 6-6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                  <AnimatePresence>
-                    {expandedSections.hair && (
-                      <motion.div
-                        className="flex flex-col space-y-1 mt-2"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {services
-                          .filter((s) => s.category === "Hair")
-                          .map((option) => (
-                            <Link
-                              key={option.id}
-                              href={option.link}
-                              className="rounded-lg px-3 py-2 text-xs xs:text-sm font-medium hover:bg-[#E8DCC8]/40 hover:text-[#C9A961] transition block"
-                              onClick={() => setMenuOpen(false)}
+                        <div>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSection("hair");
+                            }}
+                            className="w-full flex items-center justify-between rounded-lg px-3 py-2 text-xs xs:text-sm font-medium hover:bg-[#E8DCC8]/40 hover:text-[#C9A961] transition"
+                          >
+                            <span>Hair Treatments</span>
+                            <svg
+                              className={`h-3 w-3 transition-transform ${
+                                expandedSections.hair ? "rotate-180" : ""
+                              }`}
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
                             >
-                              {option.title}
-                            </Link>
-                          ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                              <path
+                                d="m6 9 6 6 6-6"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </button>
+                          <AnimatePresence>
+                            {expandedSections.hair && (
+                              <motion.div
+                                className="flex flex-col space-y-1 mt-1"
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                {services
+                                  .filter((s) => s.category === "Hair")
+                                  .map((option) => (
+                                    <Link
+                                      key={option.id}
+                                      href={option.link}
+                                      className="rounded-lg px-3 py-1.5 text-xs xs:text-sm font-medium hover:bg-[#E8DCC8]/40 hover:text-[#C9A961] transition block"
+                                      onClick={() => setMenuOpen(false)}
+                                    >
+                                      {option.title}
+                                    </Link>
+                                  ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
 
-                <motion.div
-                  className="rounded-lg border border-[#C9A961]/40 bg-[#FAFAF8] px-4 py-3 xs:py-4"
-                  variants={linkVariants}
-                  style={{ pointerEvents: "auto" }}
-                >
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleSection("mediFacials");
-                    }}
-                    className="w-full flex items-center justify-between hover:text-[#C9A961] transition"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-widest text-[#C9A961]">
-                      Medi Facials
-                    </p>
-                    <svg
-                      className={`h-4 w-4 transition-transform ${
-                        expandedSections.mediFacials ? "rotate-180" : ""
-                      }`}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        d="m6 9 6 6 6-6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                  <AnimatePresence>
-                    {expandedSections.mediFacials && (
-                      <motion.div
-                        className="flex flex-col space-y-1 mt-2"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {services
-                          .filter((s) => s.category === "Medi Facials")
-                          .map((option) => (
-                            <Link
-                              key={option.id}
-                              href={option.link}
-                              className="rounded-lg px-3 py-2 text-xs xs:text-sm font-medium hover:bg-[#E8DCC8]/40 hover:text-[#C9A961] transition block"
-                              onClick={() => setMenuOpen(false)}
+                        <div>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSection("mediFacials");
+                            }}
+                            className="w-full flex items-center justify-between rounded-lg px-3 py-2 text-xs xs:text-sm font-medium hover:bg-[#E8DCC8]/40 hover:text-[#C9A961] transition"
+                          >
+                            <span>Medi Facials</span>
+                            <svg
+                              className={`h-3 w-3 transition-transform ${
+                                expandedSections.mediFacials ? "rotate-180" : ""
+                              }`}
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
                             >
-                              {option.title}
-                            </Link>
-                          ))}
+                              <path
+                                d="m6 9 6 6 6-6"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </button>
+                          <AnimatePresence>
+                            {expandedSections.mediFacials && (
+                              <motion.div
+                                className="flex flex-col space-y-1 mt-1"
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                {services
+                                  .filter((s) => s.category === "Medi Facials")
+                                  .map((option) => (
+                                    <Link
+                                      key={option.id}
+                                      href={option.link}
+                                      className="rounded-lg px-3 py-1.5 text-xs xs:text-sm font-medium hover:bg-[#E8DCC8]/40 hover:text-[#C9A961] transition block"
+                                      onClick={() => setMenuOpen(false)}
+                                    >
+                                      {option.title}
+                                    </Link>
+                                  ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
