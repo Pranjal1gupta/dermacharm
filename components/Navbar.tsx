@@ -306,7 +306,7 @@ export default function Navbar() {
                             />
                           </svg>
                         </button>
-                        <div className="absolute right-full top-0 pt-0 pr-1 xs:pr-2 opacity-0 invisible group-hover/medi:opacity-100 group-hover/medi:visible transition pointer-events-none group-hover/medi:pointer-events-auto">
+                        <div className="absolute left-full top-0 pt-0 pl-1 xs:pl-2 opacity-0 invisible group-hover/medi:opacity-100 group-hover/medi:visible transition pointer-events-none group-hover/medi:pointer-events-auto">
                           <div className="rounded-lg lg:rounded-2xl border border-[#C9A961]/40 bg-white/95 p-2 lg:p-3 text-[#404040] shadow-xl shadow-[#D4C5B9]/30 text-xs lg:text-sm whitespace-nowrap">
                             <div className="flex flex-col gap-1">
                               {services
@@ -396,7 +396,7 @@ export default function Navbar() {
                 initial="hidden"
                 animate="visible"
               >
-                {primaryLinks.filter((link) => link.label !== "Treatments").map((link) => (
+                {primaryLinks.filter((link) => link.label !== "/").map((link) => (
                   <motion.div key={link.href} variants={linkVariants}>
                     <Link
                       href={link.href}
