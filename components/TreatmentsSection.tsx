@@ -63,13 +63,17 @@ export default function TreatmentsSection() {
 
   useEffect(() => {
     if (selectedTreatment) {
+      const originalBodyStyle = document.body.style.overflow;
+      const originalHtmlStyle = document.documentElement.style.overflow;
+      
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'hidden';
+      
+      return () => {
+        document.body.style.overflow = originalBodyStyle;
+        document.documentElement.style.overflow = originalHtmlStyle;
+      };
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
   }, [selectedTreatment]);
 
   return (
@@ -170,11 +174,13 @@ export default function TreatmentsSection() {
       <AnimatePresence>
         {selectedTreatment && (
           <motion.div 
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#404040]/80 backdrop-blur-sm p-4 overflow-hidden" 
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[#404040]/80 backdrop-blur-sm p-4 overflow-hidden overscroll-none" 
             onClick={() => setSelectedTreatment(null)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
           >
             <motion.div 
               className="relative w-full max-w-4xl rounded-3xl border-2 border-[#C9A961]/30 bg-white/95 backdrop-blur-xl shadow-3xl shadow-[#D4C5B9]/40 max-h-[85vh] flex flex-col overscroll-contain"

@@ -289,8 +289,8 @@ export const services = [
   },
   {
     id: "laser-hair-reduction",
-    title: "Laser Hair Reduction (**USFDA Approved 4-Wavelength Diode**)",
-    description: "Experience permanent hair reduction with our USP: **USFDA approved 4-wavelength diode laser technology**. Safe, effective, and long-lasting results for all skin types.",
+    title: "Laser Hair Reduction",
+    description: "Experience permanent hair reduction with our USP: USFDA approved 4-wavelength diode laser technolog. Safe, effective, and long-lasting results for all skin types.",
     condition: "Unwanted / Ingrown Hair",
     category: "Hair",
     recommendedProcedures: [
@@ -384,6 +384,96 @@ export const services = [
     details: "Treating Alopecia Areata requires managing the autoimmune response while stimulating regrowth. We use Intra-lesional Injections to suppress local inflammation, followed by PRP and GFC therapies combined with microneedling to awaken dormant follicles and promote rapid, healthy hair regrowth in bald patches.",
     image: "https://res.cloudinary.com/dlifnml9x/image/upload/v1766218976/Alopecia_Areata_Treatment_qumt5a.jpg",
     link: "/treatments/hair/alopecia-areata"
+  },
+  {
+    id: "advanced-hydrafacial",
+    title: "Advanced Hydrafacial",
+    description: "Revolutionary vortex-fusion technology that deeply cleanses, extracts impurities, and infuses hydrating serums. Instantly refreshed, plump, and radiant skin.",
+    condition: "Skin Hydration & Radiance",
+    category: "Medi Facials",
+    recommendedProcedures: [
+      "Hydrofusion Technology",
+      "Deep Extraction",
+      "Targeted Serums",
+      "Hydration Infusion"
+    ],
+    procedureDescriptions: {
+      "Hydrofusion Technology": "Vortex-fusion technology that painlessly extracts impurities while simultaneously infusing nourishing serums for immediate hydration.",
+      "Deep Extraction": "Advanced vacuum technology removes blackheads, whiteheads, and clogged pores without irritation or discomfort.",
+      "Targeted Serums": "Professional-grade serums customized to your skin type, addressing specific concerns like acne, aging, or hyperpigmentation.",
+      "Hydration Infusion": "Intense hydration boost that plumps skin, reduces fine lines, and restores natural glow in just one session."
+    },
+    details: "Advanced Hydrafacial combines cutting-edge vortex-fusion technology with customized serums to deliver immediate, visible results. The treatment deeply cleanses, painlessly extracts impurities, and floods your skin with hydration, leaving you with plump, radiant, and refreshed complexion.",
+    image: "https://res.cloudinary.com/dlifnml9x/image/upload/v1767008664/Advanced_Hydrafacial_gc36zk.avif",
+    link: "/treatments/medi-facials/advanced-hydrafacial",
+  },
+  {
+    id: "oxygeneo-facial",
+    title: "Oxygeneo Facial",
+    description: "Oxygen-infused facial treatment that oxygenates, exfoliates, and infuses active ingredients. Experience the power of oxygen for glowing, youthful skin.",
+    condition: "Dull Skin & Rejuvenation",
+    category: "Medi Facials",
+    recommendedProcedures: [
+      "Oxygen Infusion",
+      "Gentle Exfoliation",
+      "Active Ingredient Infusion",
+      "Skin Oxygenation"
+    ],
+    procedureDescriptions: {
+      "Oxygen Infusion": "Patented technology infuses 98% pure oxygen and active ingredients into skin, boosting cellular function and collagen production.",
+      "Gentle Exfoliation": "Soft-abrasive exfoliation combined with oxygen therapy removes dead skin cells while energizing the skin.",
+      "Active Ingredient Infusion": "Advanced serum delivery system ensures maximum penetration of powerful active ingredients like Vitamin C and hyaluronic acid.",
+      "Skin Oxygenation": "Increases oxygen levels in skin cells, promoting cellular energy, healing, and natural radiance."
+    },
+    details: "Oxygeneo Facial harnesses the power of oxygen to revitalize and rejuvenate tired, dull skin. The treatment combines gentle exfoliation with infusion of 98% pure oxygen and active ingredients, boosting cellular metabolism and collagen production for visibly brighter, smoother, and more youthful-looking skin.",
+    image: "https://res.cloudinary.com/dlifnml9x/image/upload/v1767008665/Oxygeneo_Facial_mefcok.webp",
+    link: "/treatments/medi-facials/oxygeneo-facial",
+  },
+  {
+    id: "pumpkin-medi-facial",
+    title: "Pumpkin Medi Facial",
+    description: "Nutrient-rich pumpkin-based facial with natural enzymes that gently exfoliate and rejuvenate. Perfect for sensitive skin and seasonal refreshment.",
+    condition: "Sensitive Skin & Rejuvenation",
+    category: "Medi Facials",
+    recommendedProcedures: [
+      "Pumpkin Enzyme Exfoliation",
+      "Antioxidant Infusion",
+      "Gentle Hydration",
+      "Anti-inflammatory Treatment"
+    ],
+    procedureDescriptions: {
+      "Pumpkin Enzyme Exfoliation": "Natural enzymes from pumpkin gently dissolve dead skin cells without harming sensitive skin. Rich in vitamins A and C.",
+      "Antioxidant Infusion": "Powerful antioxidants from pumpkin protect skin from environmental damage and free radicals, promoting youthful radiance.",
+      "Gentle Hydration": "Nourishing hydrating serums infused post-exfoliation to lock in moisture and comfort irritated skin.",
+      "Anti-inflammatory Treatment": "Pumpkin's natural anti-inflammatory properties soothe redness and calm reactive skin conditions."
+    },
+    details: "Pumpkin Medi Facial is a luxurious, gentle treatment ideal for sensitive and reactive skin. Natural pumpkin enzymes provide effective exfoliation without harshness, while rich antioxidants and vitamins soothe, hydrate, and rejuvenate. Perfect for anyone seeking a nourishing, non-irritating facial experience.",
+    image: "https://res.cloudinary.com/dlifnml9x/image/upload/v1767008885/pumpkin-peel_xcppat.jpg",
+    link: "/treatments/medi-facials/pumpkin-medi-facial",
+    featured: false
+  },
+  {
+    id: "party-peel",
+    title: "Party Peel",
+    description: "Quick, effective chemical peel designed for immediate results with minimal downtime. Achieve glowing, refreshed skin in time for your special occasion.",
+    condition: "Pre-event Skin Preparation",
+    category: "Medi Facials",
+    recommendedProcedures: [
+      "Superficial Chemical Peel",
+      "Brightening Infusion",
+      "Instant Glow Treatment",
+      "Protective Sealing"
+    ],
+    procedureDescriptions: {
+      "Superficial Chemical Peel": "Gentle acid-based peel that removes the outermost layer of dead skin cells, revealing fresh, bright skin underneath with zero downtime.",
+      "Brightening Infusion": "Vitamin-rich serums infused immediately after peeling to boost luminosity and even out skin tone.",
+      "Instant Glow Treatment": "Special formulation designed to enhance radiance and create an immediate lit-from-within glow perfect for events.",
+      "Protective Sealing": "Advanced moisturizing seal locks in hydration and protects freshly peeled skin from environmental stressors."
+    },
+    details: "Party Peel is the ultimate express facial for last-minute beauty preparation. This quick, effective chemical peel removes dead skin, brightens complexion, and infuses luminosity-boosting serums—all with zero downtime. Perfect for looking your absolute best before weddings, parties, and special occasions.",
+    image: "https://res.cloudinary.com/dlifnml9x/image/upload/v1767008971/Party-peel_mu5xin.jpg",
+    link: "/treatments/medi-facials/party-peel",
+    featured: false
   }
 ];
 

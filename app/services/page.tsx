@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FileText, Sparkles, Wand2, ChevronRight } from 'lucide-react';
 import { services } from '@/lib/data';
 
 
@@ -12,6 +13,7 @@ export default function ServicesPage() {
 
   const skinServices = services.filter(service => service.category === 'Skin');
   const hairServices = services.filter(service => service.category === 'Hair');
+  const mediFacialServices = services.filter(service => service.category === 'Medi Facials');
 
   const ServiceGrid = ({ items }: { items: typeof services }) => (
     <motion.div 
@@ -59,10 +61,7 @@ export default function ServicesPage() {
               <p className="mt-2 xs:mt-3 text-xs xs:text-sm text-[#404040]/70 leading-relaxed">{service.description}</p>
               <div className="mt-4 xs:mt-6 inline-flex items-center text-xs xs:text-xs sm:text-sm font-semibold text-[#C9A961] transition group-hover:gap-2 w-fit">
                 Learn more
-                <svg className="ml-2 h-3 xs:h-3.5 sm:h-4 w-3 xs:w-3.5 sm:w-4 transition duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                <ChevronRight className="ml-2 h-3 xs:h-3.5 sm:h-4 w-3 xs:w-3.5 sm:w-4 transition duration-300 group-hover:translate-x-1" />
               </div>
             </div>
           </div>
@@ -112,7 +111,58 @@ export default function ServicesPage() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="space-y-10 xs:space-y-12 sm:space-y-16"
         >
-          <div>
+          <motion.div
+            className="flex flex-wrap justify-center gap-3 xs:gap-4 sm:gap-6 pb-6 xs:pb-8 sm:pb-10 border-b border-[#C9A961]/20"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45, duration: 0.6 }}
+          >
+            <motion.a
+              href="#medi-facials"
+              whileHover={{ y: -2 }}
+              className="inline-flex items-center gap-2 px-4 xs:px-6 sm:px-8 py-2 xs:py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#C9A961]/10 to-[#E8DCC8]/10 border border-[#C9A961]/30 text-xs xs:text-sm font-semibold text-[#C9A961] hover:border-[#C9A961]/60 hover:bg-gradient-to-r hover:from-[#C9A961]/20 hover:to-[#E8DCC8]/20 transition"
+            >
+              <FileText className="h-4 w-4" />
+              Medi Facials
+            </motion.a>
+            <motion.a
+              href="#skin-treatments"
+              whileHover={{ y: -2 }}
+              className="inline-flex items-center gap-2 px-4 xs:px-6 sm:px-8 py-2 xs:py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#C9A961]/10 to-[#E8DCC8]/10 border border-[#C9A961]/30 text-xs xs:text-sm font-semibold text-[#C9A961] hover:border-[#C9A961]/60 hover:bg-gradient-to-r hover:from-[#C9A961]/20 hover:to-[#E8DCC8]/20 transition"
+            >
+              <Sparkles className="h-4 w-4" />
+              Skin Treatments
+            </motion.a>
+            <motion.a
+              href="#hair-treatments"
+              whileHover={{ y: -2 }}
+              className="inline-flex items-center gap-2 px-4 xs:px-6 sm:px-8 py-2 xs:py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#C9A961]/10 to-[#E8DCC8]/10 border border-[#C9A961]/30 text-xs xs:text-sm font-semibold text-[#C9A961] hover:border-[#C9A961]/60 hover:bg-gradient-to-r hover:from-[#C9A961]/20 hover:to-[#E8DCC8]/20 transition"
+            >
+              <Wand2 className="h-4 w-4" />
+              Hair Treatments
+            </motion.a>
+          </motion.div>
+
+                    <div id="medi-facials" className="scroll-mt-20">
+            <motion.h2 
+              className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#C9A961] to-[#D4C5B9] bg-clip-text text-transparent mb-2 xs:mb-3 sm:mb-4 text-center"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+            >
+              Medi Facials
+            </motion.h2>
+            <motion.p
+              className="text-center text-xs xs:text-sm sm:text-base text-[#404040]/70 mb-8 xs:mb-10 sm:mb-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.75, duration: 0.6 }}
+            >
+              Transform your skin with our advanced professional facial treatments.
+            </motion.p>
+            <ServiceGrid items={mediFacialServices} />
+          </div>
+          <div id="skin-treatments" className="scroll-mt-20">
             <motion.h2 
               className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#C9A961] to-[#D4C5B9] bg-clip-text text-transparent mb-2 xs:mb-3 sm:mb-4 text-center"
               initial={{ opacity: 0, x: -20 }}
@@ -132,7 +182,7 @@ export default function ServicesPage() {
             <ServiceGrid items={skinServices} />
           </div>
 
-          <div>
+          <div id="hair-treatments" className="scroll-mt-20">
             <motion.h2 
               className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#C9A961] to-[#D4C5B9] bg-clip-text text-transparent mb-2 xs:mb-3 sm:mb-4 text-center"
               initial={{ opacity: 0, x: -20 }}

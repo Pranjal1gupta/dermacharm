@@ -1,5 +1,5 @@
-import TreatmentsSection from '../../components/TreatmentsSection';
+import ServicesPage from '../services/page';
 
 export default function TreatmentsPage() {
-  return <TreatmentsSection />;
+  return <ServicesPage/>;
 }
