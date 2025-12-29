@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { treatmentSlides, careHighlights, docSpecialties } from '@/lib/data';
@@ -141,7 +142,7 @@ export default function AboutSection({ showFullContent = false }: AboutSectionPr
                 variants={itemVariants}
                 whileHover={{ y: -5, transition: { duration: 0.3 } }}
               >
-                <p className="text-xl xs:text-2xl sm:text-3xl font-semibold text-[#C9A961]">5+</p>
+                <p className="text-xl xs:text-2xl sm:text-3xl font-semibold text-[#C9A961]">6+</p>
                 <p className="text-xs uppercase tracking-[0.3em] text-[#404040]/60 mt-1">Years of expertise</p>
               </motion.div>
               <motion.div 
@@ -187,6 +188,76 @@ export default function AboutSection({ showFullContent = false }: AboutSectionPr
             </motion.div>
           </motion.div>
         </motion.div>
+
+        {showFullContent && (
+          <motion.div 
+            className="space-y-6 sm:space-y-8 pt-8 sm:pt-10 pb-3 sm:pb-4 border-t border-[#C9A961]/20"
+            variants={containerVariants}
+          >
+            <motion.div 
+              className="text-center"
+              variants={itemVariants}
+            >
+              <motion.p 
+                className="text-xs sm:text-sm font-semibold uppercase tracking-[0.4em] text-[#C9A961]"
+                variants={itemVariants}
+              >
+                Educational Background
+              </motion.p>
+              <motion.h3 
+                className="text-xl sm:text-2xl font-semibold text-[#404040] mt-2 sm:mt-3"
+                variants={itemVariants}
+              >
+                Dr. Anurag Agrahari
+              </motion.h3>
+            </motion.div>
+            <motion.div 
+              className="grid gap-4 sm:gap-6 sm:grid-cols-2 max-w-4xl mx-auto"
+              variants={containerVariants}
+            >
+              <motion.div 
+                className="rounded-lg sm:rounded-xl border border-[#C9A961]/40 bg-gradient-to-br from-white to-[#FAFAF8] px-4 sm:px-6 py-4 sm:py-6 shadow-md shadow-[#D4C5B9]/20"
+                variants={itemVariants}
+              >
+                <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A961] mb-2 sm:mb-3">Qualifications</p>
+                <ul className="space-y-2 text-sm sm:text-base text-[#404040]/80">
+                  <li className="flex gap-2 items-start">
+                    <span className="text-[#C9A961] font-bold mt-0.5">•</span>
+                    <span><strong>MBBS</strong> - Krishna Institute of Medical Sciences, Karad, Maharashtra</span>
+                  </li>
+                  <li className="flex gap-2 items-start">
+                    <span className="text-[#C9A961] font-bold mt-0.5">•</span>
+                    <span><strong>FAM (Fellowship in Aesthetic Medicine)</strong> - ILAMED and Medical University Greifswald, Germany</span>
+                  </li>
+                </ul>
+              </motion.div>
+              <motion.div 
+                className="rounded-lg sm:rounded-xl border border-[#C9A961]/40 bg-gradient-to-br from-white to-[#FAFAF8] px-4 sm:px-6 py-4 sm:py-6 shadow-md shadow-[#D4C5B9]/20"
+                variants={itemVariants}
+              >
+                <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] text-[#C9A961] mb-2 sm:mb-3">Professional Experience</p>
+                <ul className="space-y-2 text-sm sm:text-base text-[#404040]/80">
+                  <li className="flex gap-2 items-start">
+                    <span className="text-[#C9A961] font-bold mt-0.5">•</span>
+                    <span>Safdarjang Hospital, Delhi</span>
+                  </li>
+                  <li className="flex gap-2 items-start">
+                    <span className="text-[#C9A961] font-bold mt-0.5">•</span>
+                    <span>PSRI Hospital, Delhi</span>
+                  </li>
+                  <li className="flex gap-2 items-start">
+                    <span className="text-[#C9A961] font-bold mt-0.5">•</span>
+                    <span>Multiple clinics across Delhi NCR</span>
+                  </li>
+                  <li className="flex gap-2 items-start font-semibold">
+                    <span className="text-[#C9A961] font-bold mt-0.5">✓</span>
+                    <span><strong>Total Experience:</strong> 6.5 Years</span>
+                  </li>
+                </ul>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
 
         {showFullContent && (
           <motion.div 
@@ -326,6 +397,26 @@ export default function AboutSection({ showFullContent = false }: AboutSectionPr
             </motion.div>
           </motion.div>
         )}
+
+        <motion.div
+          className="flex justify-center pt-4 sm:pt-5 md:pt-6 pb-2 sm:pb-3"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <Link href="/contact">
+            <motion.button
+              className="group relative px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-600 hover:scale-105 animate-bounce"
+              whileHover={{ y: -2 }}
+            >
+              <span className="relative z-10">
+                Connect With Us
+              </span>
+              <div className="absolute inset-0 bg-white/20 -skew-x-12 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            </motion.button>
+          </Link>
+        </motion.div>
       </motion.div>
     </section>
   );
