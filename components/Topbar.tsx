@@ -61,7 +61,7 @@ export default function Topbar() {
             variants={itemVariants}
           >
             <span className="h-2 w-2 rounded-full bg-[#C9A961] flex-shrink-0" />
-            <span className="hidden xs:inline">9am-8pm</span>
+            <span className="hidden xs:inline">11am-8pm</span>
           </motion.span>
           <motion.span 
             className="inline-flex items-center gap-1 xs:gap-1.5 sm:gap-2 text-[#404040]/80 text-xs flex-nowrap"
