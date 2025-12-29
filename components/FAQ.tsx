@@ -7,42 +7,42 @@ const faqs = [
   {
     id: 'consultation',
     question: 'How long does an initial consultation take?',
-    answer: 'Your first consultation typically lasts 45-60 minutes. During this time, our dermatologists will assess your skin or hair condition, understand your goals, discuss your concerns, and create a personalized treatment plan tailored to your needs.',
+    answer: 'Your first consultation typically lasts 45-60 minutes. During this time, our specialists will assess your skin or hair condition, discuss your goals, and create a personalized treatment plan tailored to your needs.',
   },
   {
     id: 'downtime',
     question: 'What is the typical downtime after treatments?',
-    answer: 'Downtime varies by treatment. Non-invasive treatments like facials and LED therapy require no downtime. Laser treatments may cause temporary redness (1-3 days). More intensive procedures like microneedling or chemical peels may require 5-7 days of recovery. We&apos;ll provide specific guidelines for your chosen treatment.',
+    answer: 'Downtime varies by treatment. Non-invasive treatments like facials and LED therapy require no downtime. Laser treatments may cause temporary redness (1-3 days), while more intensive procedures like microneedling or chemical peels may require 5-7 days of recovery. We\'ll provide specific guidelines for your treatment.',
   },
   {
     id: 'results',
     question: 'When will I see results?',
-    answer: 'Results vary depending on the treatment. Some treatments like microcurrent toning show immediate effects, while others require multiple sessions. Most clients see noticeable improvements within 2-4 weeks of starting their treatment plan. We recommend a series of treatments for optimal, lasting results.',
+    answer: 'Results vary depending on the treatment. Some treatments, like microcurrent toning, show immediate effects, while others require multiple sessions. Most clients see noticeable improvements within 2-4 weeks. We recommend a series of treatments for optimal, lasting results.',
   },
   {
     id: 'frequency',
     question: 'How often do I need to repeat treatments?',
-    answer: 'Treatment frequency depends on your specific condition and goals. Some treatments require weekly sessions initially, while others are monthly maintenance. During your consultation, we&apos;ll create a customized schedule that fits your lifestyle and budget.',
+    answer: 'Treatment frequency depends on your specific goals. Some treatments require weekly sessions initially, while others transition to monthly maintenance. During your consultation, we\'ll create a customized schedule that fits your lifestyle and budget.',
   },
   {
     id: 'skin-type',
     question: 'Can treatments be done on all skin types?',
-    answer: 'Most of our treatments are suitable for all skin types. Our dermatologists customize each treatment to your specific skin type and concerns. During your consultation, well discuss any skin sensitivities and adjust treatments accordingly to ensure safety and effectiveness.',
+    answer: 'Most of our treatments are suitable for all skin types. Our dermatologists customize each session to your specific concerns. During your consultation, we\'ll discuss any skin sensitivities and adjust treatments accordingly to ensure safety and effectiveness.',
   },
   {
     id: 'pregnant',
     question: 'Can I get treatments if I am pregnant?',
-    answer: 'Most surgical and invasive treatments are not recommended during pregnancy. However, many non-invasive, gentle treatments can be safely performed. Please inform us about your pregnancy during consultation, and we&apos;ll recommend appropriate options that prioritize your and your baby&apos;s safety.',
+    answer: 'Surgical and invasive treatments are generally not recommended during pregnancy. However, many non-invasive, gentle treatments can be safely performed. Please inform us about your pregnancy during your consultation so we can recommend safe options for you.',
   },
   {
     id: 'side-effects',
     question: 'Are there any side effects?',
-    answer: 'Most treatments have minimal side effects. Common temporary effects include mild redness, slight swelling, or sensitivity that typically resolve within hours to days. Serious side effects are rare when treatments are performed by qualified professionals. Well discuss all potential side effects during your consultation.',
+    answer: 'Most treatments have minimal side effects. Common temporary effects include mild redness or slight swelling that typically resolve within hours to days. Serious side effects are rare when treatments are performed by qualified professionals. We\'ll discuss all potential effects during your consultation.',
   },
   {
     id: 'maintenance',
     question: 'What post-treatment care is needed?',
-    answer: 'Post-treatment care varies by procedure. Generally, we recommend gentle skincare, sun protection, and avoiding harsh products or activities. We provide detailed aftercare instructions for each treatment. Our concierge team is available to answer any questions during your recovery period.',
+    answer: 'Post-treatment care varies by procedure. Generally, we recommend gentle skincare, sun protection, and avoiding harsh products. We provide detailed aftercare instructions for each treatment, and our team is available to answer any questions during your recovery.',
   },
 ];
 

@@ -238,7 +238,7 @@ export default function ContactPage() {
                     Hours
                   </p>
                   <p className="mt-1 xs:mt-1.5 sm:mt-2 text-sm xs:text-base sm:text-lg font-semibold text-[#404040]">
-                    9:00 AM – 8:00 PM
+                    11:00 AM – 8:00 PM
                   </p>
                   <p className="text-xs xs:text-xs sm:text-sm text-[#404040]/70">
                     Monday to Sunday
