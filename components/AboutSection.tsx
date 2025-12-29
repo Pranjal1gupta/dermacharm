@@ -11,7 +11,7 @@ const headerVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8 },
+    transition: { duration: 0.4 },
   },
 };
 
@@ -20,7 +20,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6 },
+    transition: { duration: 0.3 },
   },
 };
 
@@ -29,8 +29,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
+      staggerChildren: 0.05,
+      delayChildren: 0.1,
     },
   },
 };
@@ -170,7 +170,7 @@ export default function AboutSection({ showFullContent = false }: AboutSectionPr
               className="relative aspect-[4/5] overflow-hidden rounded-[20px] xs:rounded-[24px] sm:rounded-[32px] border border-[#C9A961]/50 bg-gradient-to-br from-white via-[#FAFAF8] to-[#E8DCC8] shadow-2xl shadow-[#D4C5B9]/50"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4 }}
               viewport={{ once: true }}
             >
               <Image src="https://res.cloudinary.com/dlifnml9x/image/upload/v1765614239/524812885_18515732488065041_7772136519625680684_n_1_bubo6d.webp" alt="Dr. Anurag Agrahari, Founder" fill priority className="object-cover" />
@@ -179,7 +179,7 @@ export default function AboutSection({ showFullContent = false }: AboutSectionPr
               className="absolute -bottom-2 xs:-bottom-3 sm:-bottom-6 right-2 xs:right-3 sm:right-6 rounded-lg xs:rounded-lg sm:rounded-2xl border border-[#C9A961]/60 bg-[#C9A961] px-3 xs:px-4 sm:px-6 py-2 xs:py-3 sm:py-4 text-white shadow-xl shadow-[#C9A961]/40"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
               viewport={{ once: true }}
             >
               <p className="text-[0.65rem] xs:text-xs uppercase tracking-[0.4em] text-white/70">Specialization</p>
@@ -402,12 +402,12 @@ export default function AboutSection({ showFullContent = false }: AboutSectionPr
           className="flex justify-center pt-4 sm:pt-5 md:pt-6 pb-2 sm:pb-3"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.3 }}
           viewport={{ once: true }}
         >
           <Link href="/contact">
             <motion.button
-              className="group relative px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-600 hover:scale-105 animate-bounce"
+              className="group relative px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105"
               whileHover={{ y: -2 }}
             >
               <span className="relative z-10">
