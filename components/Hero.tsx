@@ -165,9 +165,11 @@ export default function Hero() {
       </div>
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-white/20 to-white/80 pointer-events-none" />
       <div 
-        className="relative w-full min-h-screen px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 pb-6 xs:pb-8 sm:pb-10 md:pb-12 lg:pb-16 pt-6 xs:pt-8 sm:pt-10 md:pt-12 lg:pt-14 text-gray-900 flex flex-col"
+        className="relative w-full
+    px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8
+    text-gray-900"
       >
-        <div className="mx-auto max-w-7xl w-full flex flex-col justify-center flex-1">
+        <div className="mx-auto max-w-7xl w-full flex flex-col py-10 md:py-16">
           <div className="grid gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <AnimatePresence mode="wait">
               <motion.div 
@@ -320,3 +322,4 @@ export default function Hero() {
     </section>
   );
 }
+
