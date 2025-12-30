@@ -159,6 +159,15 @@ export default function Footer() {
                   </motion.a>
                 ))}
               </motion.div>
+              <motion.a 
+                href="https://partner.citywitty.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 block text-[10px] uppercase tracking-[0.2em] text-[#404040]/40 font-medium hover:text-[#C9A961] transition"
+                variants={itemVariants}
+              >
+                Powered by CW
+              </motion.a>
             </motion.div>
             {navGroups.map((group, index) => (
               <motion.div 
@@ -227,6 +236,7 @@ export default function Footer() {
       </div>
       <motion.div 
         className="border-t border-[#C9A961]/20 py-3 xs:py-4 sm:py-5 text-center text-xs xs:text-xs text-[#404040]/60 px-2 xs:px-3 sm:px-4 bg-white/50"
+        title="Designed and Developed By -Pranjal Gupta"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.5 }}
