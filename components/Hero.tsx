@@ -142,7 +142,7 @@ export default function Hero() {
   const activeSlide = slides[activeIndex];
 
   return (
-    <section className="relative overflow-hidden mt-0 xs:mt-0 sm:mt-0 bg-gradient-to-br from-white via-[#FBF9F6] to-[#F5EDE3] min-h-screen">
+    <section className="relative overflow-hidden mt-0 xs:mt-0 sm:mt-0 bg-gradient-to-br from-white via-[#FBF9F6] to-[#F5EDE3]">
       <div className="absolute inset-0">
         {slides.map((slide, index) => (
           <div

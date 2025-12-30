@@ -77,7 +77,7 @@ export default function TreatmentsSection() {
   }, [selectedTreatment]);
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-[#FAFAF8] to-[#F5F2EE] w-full px-4 sm:px-6 lg:px-8 py-12 lg:py-16 overflow-visible">
+    <section className="bg-gradient-to-br from-[#FAFAF8] to-[#F5F2EE] w-full px-4 sm:px-6 lg:px-8 py-12 lg:py-16 overflow-visible">
       <div className="mx-auto max-w-7xl overflow-visible">
         {/* Header */}
         <motion.div 
