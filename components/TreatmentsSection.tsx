@@ -103,7 +103,7 @@ export default function TreatmentsSection() {
             className="mx-auto max-w-3xl text-sm sm:text-base lg:text-lg text-[#404040]/80 leading-relaxed"
             variants={cardVariants}
           >
-            Immerse in multi-sensory dermatology that fuses clinical precision with deeply restorative rituals for skin,
+            Immerse in multi-sensory aesthetic medicine that fuses clinical precision with deeply restorative rituals for skin,
             scalp, and total complexion health.
           </motion.p>
         </motion.div>

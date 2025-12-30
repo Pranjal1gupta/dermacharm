@@ -273,16 +273,18 @@ export const services = [
     recommendedProcedures: [
       "PRP + Microneedling",
       "GFC + Microneedling",
+      "Hair Exosomes",
       "Meso Therapy",
       "LED Therapy"
     ],
     procedureDescriptions: {
       "PRP + Microneedling": "Platelet-rich plasma combined with microneedling stimulates dormant hair follicles. Growth factors activate hair regeneration and improve scalp health.",
       "GFC + Microneedling": "Growth factor concentrate provides superior regenerative properties compared to PRP. Enhanced follicle stimulation for visible hair regrowth.",
+      "Hair Exosomes": "Advanced regenerative therapy using exosome vesicles to deliver growth factors and signaling molecules. Promotes hair follicle rejuvenation and increases hair density.",
       "Meso Therapy": "Microinjection of growth factors and nutrients directly into the scalp. Nourishes hair follicles and promotes healthy hair growth.",
       "LED Therapy": "Low-level laser light stimulates cellular energy in hair follicles. Increases blood flow and promotes natural hair growth without side effects."
     },
-    details: "Our comprehensive hair restoration protocols utilize PRP and GFC therapies combined with microneedling to directly activate dormant follicles. Meso Therapy provides a deep infusion of essential nutrients, while LED Therapy increases scalp circulation and cellular energy to ensure robust, natural hair regrowth.",
+    details: "Our comprehensive hair restoration protocols utilize PRP, GFC, and Hair Exosome therapies combined with microneedling to directly activate dormant follicles. Meso Therapy provides a deep infusion of essential nutrients, while LED Therapy increases scalp circulation and cellular energy to ensure robust, natural hair regrowth.",
     image: "https://res.cloudinary.com/dlifnml9x/image/upload/v1766217607/Hair_Fall_Balding_Treatment_klmu15.jpg",
     link: "/treatments/hair/hair-fall",
     featured: true
@@ -473,6 +475,25 @@ export const services = [
     details: "Party Peel is the ultimate express facial for last-minute beauty preparation. This quick, effective chemical peel removes dead skin, brightens complexion, and infuses luminosity-boosting serums—all with zero downtime. Perfect for looking your absolute best before weddings, parties, and special occasions.",
     image: "https://res.cloudinary.com/dlifnml9x/image/upload/v1767008971/Party-peel_mu5xin.jpg",
     link: "/treatments/medi-facials/party-peel",
+    featured: false
+  },
+  {
+    id: "tattoo-removal",
+    title: "Tattoo Removal",
+    description: "Professional tattoo removal using advanced Pico Laser and Q-Switch Laser technology. Safe, effective, and suitable for all skin types.",
+    condition: "Unwanted Tattoos",
+    category: "Skin",
+    recommendedProcedures: [
+      "Pico Laser",
+      "Q-Switch Laser"
+    ],
+    procedureDescriptions: {
+      "Pico Laser": "Advanced picosecond laser technology that breaks down tattoo pigments into smaller particles for faster clearance. Effective on multi-colored tattoos with minimal risk of scarring.",
+      "Q-Switch Laser": "High-powered laser that delivers energy in short pulses to fragment tattoo ink. Proven technology for safe and effective tattoo removal with fewer sessions required."
+    },
+    details: "Our tattoo removal services utilize cutting-edge Pico Laser and Q-Switch Laser technology to safely and effectively eliminate unwanted tattoos. Both laser systems target ink pigments without damaging surrounding skin, making them suitable for all skin types. Multiple sessions may be required depending on tattoo size, color, and depth.",
+    image: "https://res.cloudinary.com/dlifnml9x/image/upload/v1767099895/Tattoo_removal_treatment_bzvxar.jpg",
+    link: "/treatments/skin/tattoo-removal",
     featured: false
   }
 ];

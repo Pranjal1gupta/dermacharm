@@ -405,13 +405,13 @@ export default function AboutSection({ showFullContent = false }: AboutSectionPr
           transition={{ duration: 0.3 }}
           viewport={{ once: true }}
         >
-          <Link href="/contact">
+          <Link href="/about">
             <motion.button
               className="group relative px-8 lg:px-12 py-3 lg:py-4 rounded-2xl bg-gradient-to-r from-[#C9A961] to-[#E8DCC8] text-white font-semibold uppercase tracking-[0.2em] text-sm lg:text-base overflow-hidden shadow-xl shadow-[#C9A961]/30 hover:shadow-2xl hover:shadow-[#C9A961]/50 transition-all duration-300 hover:scale-105"
               whileHover={{ y: -2 }}
             >
               <span className="relative z-10">
-                Connect With Us
+                View more about us
               </span>
               <div className="absolute inset-0 bg-white/20 -skew-x-12 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </motion.button>

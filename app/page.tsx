@@ -113,8 +113,8 @@ export default function Home() {
               className="mt-2 xs:mt-3 sm:mt-4 text-xs xs:text-sm sm:text-base text-[#404040]/70 mx-auto max-w-3xl leading-relaxed"
               variants={itemVariants}
             >
-              Explore high-touch programs led by board-certified dermatologists using clinically proven devices and
-              luxurious care rituals inspired by global wellness destinations.
+              Experience personalized aesthetic care combining medical expertise with advanced technology. 
+              Every treatment is thoughtfully designed to deliver natural-looking results while prioritizing your safety, comfort, and long-term skin health.
             </motion.p>
           </motion.div>
           <motion.div 

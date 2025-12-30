@@ -113,7 +113,7 @@ const slides: Slide[] = [
     description: 'Scalp mapping, PRP boosters, and LED rejuvenation converge to strengthen follicles and restore confident volume.',
     highlights: ['PRP boost', 'LED rejuvenation', 'Nutrient infusions'],
     image: '/hero-slide-3.svg',
-    sideImage: 'https://static.glossgenius.com/public/service/927c7da91558b470456567fd78eeae0cc63978d3/image/91d7a4a3a5dfe35dcf0aae4b0ceff560.jpg',
+    sideImage: 'https://res.cloudinary.com/dlifnml9x/image/upload/v1767100873/Revive_hair_and_scalp_health_with_precision_diagnostics_m7dllw.jpg',
     focus: 'Revive Tricho Lab',
     metric: '8k+ successful hair journeys and counting',
   },
