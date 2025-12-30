@@ -202,7 +202,7 @@ export default function Footer() {
                     >
                       <MapPin className="h-5 w-5 text-[#C9A961] flex-shrink-0 mt-0.5" />
                       <p className="text-xs xs:text-sm text-[#404040]/70 text-left leading-relaxed hover:text-[#C9A961] transition">
-                        No 2/237,2/237, Vikas Khand, near mayo hospital, Gomti Nagar, Lucknow-226010, Uttar Pradesh
+                        No 2/237, Vikas Khand, near mayo hospital, Gomti Nagar, Lucknow-226010, Uttar Pradesh
                       </p>
                     </a>
                     <a 
