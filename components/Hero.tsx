@@ -142,7 +142,7 @@ export default function Hero() {
   const activeSlide = slides[activeIndex];
 
   return (
-    <section className="relative overflow-hidden mt-0 xs:mt-0 sm:mt-0 bg-gradient-to-br from-white via-[#FBF9F6] to-[#F5EDE3]" style={{ height: '100vh' }}>
+    <section className="relative overflow-hidden mt-0 xs:mt-0 sm:mt-0 bg-gradient-to-br from-white via-[#FBF9F6] to-[#F5EDE3] min-h-screen">
       <div className="absolute inset-0">
         {slides.map((slide, index) => (
           <div
@@ -165,11 +165,10 @@ export default function Hero() {
       </div>
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-white/20 to-white/80 pointer-events-none" />
       <div 
-        className="relative w-full px-2 xs:px-3 sm:px-4 pb-6 xs:pb-8 sm:pb-10 pt-8 xs:pt-10 sm:pt-12 lg:pt-16 text-gray-900"
-        style={{ height: '100vh' }}
+        className="relative w-full px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 pb-6 xs:pb-8 sm:pb-10 md:pb-12 lg:pb-16 pt-6 xs:pt-8 sm:pt-10 md:pt-12 lg:pt-14 text-gray-900 flex flex-col"
       >
-        <div className="mx-auto max-w-7xl h-full flex flex-col justify-end">
-          <div className="grid gap-3 xs:gap-4 sm:gap-6 lg:gap-8 lg:grid-cols-[1.1fr_0.9fr] flex-1">
+        <div className="mx-auto max-w-7xl w-full flex flex-col justify-end flex-1">
+          <div className="grid gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <AnimatePresence mode="wait">
               <motion.div 
                 key={activeIndex}
@@ -290,7 +289,7 @@ export default function Hero() {
             <AnimatePresence mode="wait">
               <motion.div 
                 key={activeIndex}
-                className="relative rounded-2xl xs:rounded-2xl sm:rounded-3xl border border-[#E8D5B5] overflow-hidden shadow-2xl shadow-[#D4C5B9]/50 mt-8 lg:mt-0 lg:h-[600px]"
+                className="relative rounded-2xl xs:rounded-2xl sm:rounded-3xl border border-[#E8D5B5] overflow-hidden shadow-2xl shadow-[#D4C5B9]/50 mt-8 lg:mt-0 h-48 xs:h-56 sm:h-80 md:h-96 lg:h-[600px]"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={showAnimation ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                 exit={{ opacity: 0, scale: 0.95 }}
