@@ -218,7 +218,7 @@ export default function Hero() {
                 </motion.div>
               </div>
               <motion.div 
-                className="flex flex-col xs:flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 xs:gap-5 sm:gap-6 text-sm text-gray-600"
+                className="mt-8 xs:mt-10 sm:mt-0 flex flex-col xs:flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 xs:gap-5 sm:gap-6 text-sm text-gray-600"
                 initial="hidden"
                 animate={showAnimation ? "visible" : "hidden"}
               >
