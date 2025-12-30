@@ -185,6 +185,8 @@ export default function AboutSection({ showFullContent = false }: AboutSectionPr
               <p className="text-[0.65rem] xs:text-xs uppercase tracking-[0.4em] text-white/70">Specialization</p>
               <p className="text-[0.7rem] xs:text-xs sm:text-sm font-semibold mt-0.5 xs:mt-1">Aesthetic Medicine & Laser Treatments</p>
               <p className="text-[0.7rem] xs:text-xs sm:text-sm font-semibold">Advanced Skin & Hair Procedures</p>
+              <p className="text-[0.65rem] xs:text-xs uppercase tracking-[0.4em] text-white/70 mt-1.5 xs:mt-2">Education</p>
+              <p className="text-[0.7rem] xs:text-xs sm:text-sm font-semibold">MBBS, FAM (Germany)</p>
             </motion.div>
           </motion.div>
         </motion.div>

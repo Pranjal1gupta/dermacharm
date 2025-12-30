@@ -233,7 +233,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="mt-1 xs:mt-1.5 sm:mt-2 text-sm xs:text-base sm:text-lg font-semibold text-[#404040] hover:text-[#C9A961] transition"
                   >
-                    No 2/237,2/237, Vikas Khand, near mayo hospital, Gomti Nagar, Lucknow-226010, Uttar Pradesh
+                    No 2/237, Vikas Khand, near mayo hospital, Gomti Nagar, Lucknow-226010, Uttar Pradesh
                   </Link>
                 </div>
               </motion.div>
